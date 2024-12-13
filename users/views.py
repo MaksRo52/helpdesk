@@ -9,6 +9,7 @@ from django.views import generic
 from config.settings import EMAIL_HOST_USER
 from users.forms import UserRegisterForm
 from users.models import User
+from users.tasks import authentication
 
 
 class UserCreateView(generic.CreateView):
@@ -25,12 +26,7 @@ class UserCreateView(generic.CreateView):
         user.save()
         host = self.request.get_host()
         url = f"http://{host}/users/activate/{token}/"
-        send_mail(
-            subject="Активация аккаунта",
-            message=f"Для активации вашего аккаунта перейдите по ссылке: {url}",
-            from_email=EMAIL_HOST_USER,
-            recipient_list=[user.email],
-        )
+        authentication.delay(url,user.email)
         return super().form_valid(form)
 
 
