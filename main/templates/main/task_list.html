@@ -1,0 +1,27 @@
+{% extends 'main/index.html' %}
+{% load tags %}
+{% block content %}
+<h3>
+Задачи
+</h3>
+    {% if user.is_authenticated %}
+<div class="row row-cols-md-4 mb-4 text-center">
+    <div class="col themed-grid-col"><h6>Тема</h6></div>
+    <div class="col themed-grid-col"><h6>Дата создания</h6></div>
+    <div class="col themed-grid-col"><h6>Статус</h6></div>
+    <div class="col themed-grid-col"><h6>Автор</h6></div>
+</div>
+{% for task in object_list %}
+<div class="row row-cols-md-4 mb-4 text-center">
+    <div class="container-fluid themed-container text-center"><a class="btn " href="{% url 'main:task_detail' task.pk %}"
+                                   role="button">{{task.title}}</a></div>
+    <div class="container-fluid themed-container text-center"><a class="btn " href="{% url 'main:task_detail' task.pk %}"
+                                   role="button">{{task.created_at}}</a></div>
+    <div class="container-fluid themed-container text-center"><a class="btn " href="{% url 'main:task_detail' task.pk %}"
+                                   role="button">{{task.get_status_display}}</a></div>
+    <div class="container-fluid themed-container text-center"><a class="btn " href="{% url 'main:task_detail' task.pk %}"
+                                   role="button">{{task.author}}</a></div>
+</div>
+{% endfor %}
+{% endif %}
+{% endblock %}

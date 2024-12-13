@@ -1,0 +1,35 @@
+{% extends 'main/index.html' %}
+{% load tags %}
+{% block content %}
+<div class="container">
+    <div class="row text-center">
+        <div class="col-10">
+            <div class="card mb-4 box-shadow">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">Тема: {{object.title}} </h4>
+                </div>
+                <div class="card-body">
+                    {% include 'includes/inc_image.html' %}
+                    <p class="card-text">Содержание: {{object.description}}</p>
+                    <p class="card-text">Статус: {{ object.get_status_display }}</p>
+                    <p class="card-text">Дата создания: {{ object.created_at }}</p>
+                    <p class="card-text">Решение: {{ object.commentary }}</p>
+
+
+<!--                    <a class="btn btn-primary" href="{% url 'main:task_detail' task.pk %}"-->
+<!--                       role="button">Посмотреть</a>-->
+                    <a class="btn btn-primary" href="{% url 'main:task_update' task.pk %}"
+                       role="button">Изменить</a>
+<!--                    <a class="btn btn-primary" href="#"-->
+<!--                       role="button">Удалить</a>-->
+                    <a class="btn btn-primary" href="{% url 'main:index' %}" role="button">Назад</a>
+                    <form action="" method="post">
+                    {{ form }}
+  <input type="submit" value="Submit">
+</form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

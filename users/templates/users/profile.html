@@ -1,0 +1,24 @@
+{% extends 'main/index.html' %}
+{% load tags %}
+{% block content %}
+<div class="container">
+    <div class="row text-center">
+        <div class="col-4">
+            <div class="card mb-4 box-shadow">
+                <div class="card-header">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Профиль пользователя</h5>
+                    {% if user.photo %}
+                    {% include 'includes/inc_image.html' %}
+                    {% endif %}
+                    <p class="card-text">email: {{user.email}}</p>
+                    <p class="card-text">Номер телефона: {{user.phone_number}}</p>
+                    <p class="card-text">Страна: {{user.country}}</p>
+                    <a class="btn btn-primary" href="{% url 'main:index' %}" role="button">Назад</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

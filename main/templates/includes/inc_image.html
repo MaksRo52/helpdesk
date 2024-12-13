@@ -1,0 +1,20 @@
+{% load tags %}
+{% load static %}
+<script src="{% static 'js/img.js' %}"></script>
+<link href="{% static 'css/img.css' %}" rel="stylesheet">
+{% if product.img %}
+<img class="w-100" src="{{ product.image | mymedia }}"
+     onerror="this.onerror=null; this.src='{% static '/img/no_image.jpg' %}'">
+{% elif object.img %}
+<div class="image__wrapper">
+    <img class="minimized" alt="клик для увеличения" src="{{ object.img | mymedia }}"
+         onerror="this.onerror=null; this.src='{% static '/img/no_image.jpg' %}'">
+</div>
+{% elif blog.image %}
+<img class="w-100" src="{{ blog.image | mymedia }}" onerror="this.onerror=null; this.src='{% static '/img/no_image.jpg' %}'">
+{% elif users.photo %}
+<img class="w-100" src="{{ users.photo | mymedia }}"
+     onerror="this.onerror=null; this.src='{% static '/img/no_image.jpg' %}'">
+{% else %}
+<img class="w-20" src="{% static '/img/no_image.jpg' %}">
+{% endif %}

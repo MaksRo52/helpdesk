@@ -1,0 +1,31 @@
+<header class="p-3 text-bg-dark">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="/" class="nav-link px-2 text-white">Главная</a></li>
+                <li><a href="{% url 'main:index' %}" class="nav-link px-2 text-white">Задачи</a></li>
+            </ul>
+
+
+            <div class="text-end">
+                {% if user.is_authenticated %}
+                <form action="{% url 'users:logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-outline-light me-2">Выйти</button>
+                    <a href="{% url 'users:profile' request.user.pk%}">
+                        <button type="button" class="btn btn-outline-light me-2">{{ user.email }}</button>
+                    </a>
+                <a class="btn btn-primary" href="{% url 'main:task_create' %}" role="button">Создать задачу</a>
+                    </form>
+                {% else %}
+                <a href="{% url 'users:login' %}">
+                    <button type="button" class="btn btn-outline-light me-2">Войти</button>
+                </a>
+                <a href="{% url 'users:register' %}">
+                    <button type="button" class="btn btn-warning">Зарегистрироваться</button>
+                </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</header>
