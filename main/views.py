@@ -68,3 +68,15 @@ class TaskAtWork(SingleObjectMixin, View):
             obj.save()
             work_task.delay(obj.title, obj.pk, user.email, obj.author.email)
         return HttpResponseRedirect(reverse_lazy('main:index'))
+
+
+class TaskClose(SingleObjectMixin, View):
+    model = Task
+
+    def post(self, request, *args, **kwargs):
+        obj = self.get_object()
+        if obj.status == "new" or obj.status == "work":
+            obj.status = "complete"
+            obj.save()
+            close_task(obj.title, obj.commentary, obj.author.email)
+        return HttpResponseRedirect(reverse_lazy('main:index'))

@@ -2,7 +2,7 @@ from django.urls import path
 
 from main.apps import MainConfig
 from main.views import (TaskCreateView, TaskDetailView, TaskListView,
-                        TaskUpdateView, TaskAtWork)
+                        TaskUpdateView, TaskAtWork, TaskClose)
 
 app_name = MainConfig.name
 
@@ -13,4 +13,5 @@ urlpatterns = [
     path("task/<int:pk>", TaskDetailView.as_view(), name="task_detail"),
     path("task_update/<int:pk>", TaskUpdateView.as_view(), name="task_update"),
     path("task/work/<int:pk>", TaskAtWork.as_view(), name="task_at_work"),
+    path("task/close/<int:pk>", TaskClose.as_view(), name="task_close"),
 ]

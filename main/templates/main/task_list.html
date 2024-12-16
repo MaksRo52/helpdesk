@@ -2,36 +2,52 @@
 {% load tags %}
 {% block content %}
 <h3 class="pt-6">
-Задачи
+    Задачи
 </h3>
-    {% if user.is_authenticated %}
+{% if user.is_authenticated %}
 <div class="row row-cols-md-4 mb-4 text-center">
-    <div class="container-fluid themed-container text-center"><h6>Тема</h6></div>
-    <div class="container-fluid themed-container text-center"><h6>Дата создания</h6></div>
-    <div class="container-fluid themed-container text-center"><h6>Статус</h6></div>
-    <div class="container-fluid themed-container text-center"><h6>Автор</h6></div>
+    <div class="container-fluid themed-container text-center"><h6>Тема</h6>
+    </div>
+    <div class="container-fluid themed-container text-center"><h6>Дата
+        создания</h6></div>
+    <div class="container-fluid themed-container text-center"><h6>Статус</h6>
+    </div>
+    <div class="container-fluid themed-container text-center"><h6>Автор</h6>
+    </div>
 </div>
 {% for task in object_list %}
 <!--<a class="btn " href="{% url 'main:task_detail' task.pk %}"-->
 <!--                                   role="button">-->
 <!--    <form action="{% url 'main:task_detail' task.pk %}">-->
 <a class="btn-a" href="{% url 'main:task_detail' task.pk %}">
-<div class="row row-cols-md-4 ">
-    <div class="container-fluid themed-container text-center">{{task.title}}</div>
-    <div class="container-fluid themed-container text-center">{{task.created_at}}</div>
-    {% if task.status == 'new' %}
-    <div class="container-fluid themed-container text-center"><form action="{% url 'main:task_at_work' task.pk %}" method="POST">{% csrf_token %}<button type="submit" class="btn btn-primary">{{task.get_status_display}}</button></form></div>
-    {% elif task.status == 'work' %}
-        <div class="container-fluid themed-container text-center">{{task.get_status_display}}</div>
-    {% elif task.status == 'complete' %}
-            <div class="container-fluid themed-container text-center">{{task.get_status_display}}</div>
+    <div class="row row-cols-md-4 ">
+        <div class="container-fluid themed-container text-center">
+            {{task.title}}
+        </div>
+        <div class="container-fluid themed-container text-center">
+            {{task.created_at}}
+        </div>
+        {% if task.status == 'new' or task.status == 'work'%}
+        <div class="container-fluid themed-container text-center">
+            <form class="dropdown-item" action="{% url 'main:task_at_work' task.pk %}" method="POST">{% csrf_token %}
+                    <button type="submit" class="btn btn-primary">
+                     {{task.get_status_display}}
+                    </button>
+                    </form>
+        </div>
 
-    {% endif %}
-    <div class="container-fluid themed-container text-center">{{task.author}}</div>
-</div>
-    </a>
+            {% elif task.status == 'complete' %}
+            <div class="container-fluid themed-container text-center">
+                {{task.get_status_display}}
+            </div>
+
+            {% endif %}
+            <div class="container-fluid themed-container text-center">
+                {{task.author}}
+            </div>
+        </div>
 <!--    </form>-->
-<!--    </a>-->
+</a>
 {% endfor %}
 {% endif %}
 {% endblock %}
