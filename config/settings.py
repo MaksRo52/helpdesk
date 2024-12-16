@@ -1,6 +1,7 @@
 import os
-from pathlib import Path
 from datetime import timedelta
+from pathlib import Path
+
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -20,7 +21,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "users", "main"
+    "users", "main", 'rest_framework'
 ]
 
 MIDDLEWARE = [
@@ -101,7 +102,7 @@ STATICFILES_DIRS = (BASE_DIR / "static",)
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = "users.User"
-
+LOGOUT_REDIRECT_URL = "main:index"
 # Настройки почты
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = os.getenv("EMAIL_HOST")

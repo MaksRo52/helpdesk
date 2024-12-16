@@ -1,4 +1,5 @@
 from django.db import models
+
 NULLABLE = {"null": True, "blank": True}
 from users.models import User
 
@@ -17,7 +18,7 @@ class Task(models.Model):
     priority = models.CharField(
         max_length=8,
         verbose_name="Приоритет",
-        choices={"low": "Низкий", "medium": "Средний", "hight": "Высокий"},
+        choices={"low": "Низкий", "medium": "Средний", "high": "Высокий"},
     )
     author = models.ForeignKey(
         User, verbose_name="автор", on_delete=models.SET_NULL, **NULLABLE
@@ -27,19 +28,18 @@ class Task(models.Model):
         max_length=500, verbose_name="Комментарий", **NULLABLE
     )
 
+
     class Meta:
         ordering = ("-created_at",)
         verbose_name = "Задача"
         verbose_name_plural = "Задачи"
-
-        permissions = (
-            ("view_detail_task", "Просмотреть задачу"),
-            ("edit_task", "Изменить задачу"),
-            ("delete_tasks", "Удалить задачу"),
-        )
+        permissions = [
+            ("can_edit_status_task", "Can edit status task"),
+        ]
 
         def __str__(self):
             return self.title
+
 
 
 class TaskComment(models.Model):

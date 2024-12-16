@@ -14,8 +14,6 @@
                     <p class="card-text">Статус: {{ object.get_status_display }}</p>
                     <p class="card-text">Дата создания: {{ object.created_at }}</p>
                     <p class="card-text">Решение: {{ object.commentary }}</p>
-
-
 <!--                    <a class="btn btn-primary" href="{% url 'main:task_detail' task.pk %}"-->
 <!--                       role="button">Посмотреть</a>-->
                     <a class="btn btn-primary" href="{% url 'main:task_update' task.pk %}"
@@ -23,10 +21,6 @@
 <!--                    <a class="btn btn-primary" href="#"-->
 <!--                       role="button">Удалить</a>-->
                     <a class="btn btn-primary" href="{% url 'main:index' %}" role="button">Назад</a>
-                    <form action="" method="post">
-                    {{ form }}
-  <input type="submit" value="Submit">
-</form>
                 </div>
             </div>
         </div>

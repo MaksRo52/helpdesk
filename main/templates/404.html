@@ -1,11 +1,28 @@
-<!DOCTYPE html>
+{% load static %}
 <html>
-<title>Wrong address</title>
+<head>
+	<meta charset='UTF-8' />
+	<title>Страница не найдена</title>
+	<link rel="stylesheet" type="text/css" href="/public/css/style.css?1734339272" />
+
+</head>
 <body>
-
-<h1>Ooops!</h1>
-
-<h2>I cannot find the file you requested!</h2>
-
+	<div style='width: 960px; margin: auto; font-family: Arial, sans-serif;'>
+		<a href='/'>
+			<img src="{% static 'img/LMS-logo.svg' %}" alt='LMS' style='margin-top: 15px; height: 100px;' />
+		</a>
+		<div style='margin: 30px 0px 20px 0px; font-size: 30px; font-weight: bold; line-height: 1;'>
+			Что-то пошло не так
+		</div>
+		<div style='margin: 0px 0px 20px 0px; font-size: 20px; line-height: 1;'>
+			404. Страница не найдена
+		</div>
+		<div style='margin: 0px 0px 20px 0px; font-size: 12px; line-height: 1;'>
+			Неправильно набран адрес или такой страницы больше не существует, а возможно никогда и не существовало.
+		</div>
+		<div style='margin: 0px 0px 20px 0px; font-size: 12px; line-height: 1; font-weight: bold;'>
+			Проверьте адрес или перейдите на <a href='/'>главную страницу</a>.
+		</div>
+	</div>
 </body>
 </html>

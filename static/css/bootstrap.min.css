@@ -3258,6 +3258,29 @@ textarea.form-control-lg {
     opacity: var(--bs-btn-disabled-opacity)
 }
 
+.btn-a {
+    outline: none;
+    text-decoration: none;
+    display: block;
+    color: black;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    margin: 10px;
+    padding: 10px;
+
+}
+
+.btn-a:hover {
+    background: #9eeaf9;
+    background: radial-gradient(ellipse at bottom,#bacbe6 30%,#9eeaf9 80%)
+}
+
+.btn-a:active {
+    background: #0a58ca;
+    color: white;
+}
+
 .btn-primary {
     --bs-btn-color: #fff;
     --bs-btn-bg: #0d6efd;
@@ -8741,6 +8764,11 @@ textarea.form-control-lg {
     padding-top: 3rem !important
 }
 
+.pt-6 {
+    padding-left: 3rem !important;
+    padding-right: 3rem !important;
+}
+
 .pe-0 {
     padding-right: 0 !important
 }
@@ -8980,7 +9008,9 @@ textarea.form-control-lg {
 }
 
 .text-center {
-    text-align: center !important
+    text-align: center !important;
+    vertical-align: middle
+
 }
 
 .text-decoration-none {
@@ -13463,4 +13493,3 @@ textarea.form-control-lg {
     }
 }
 
-/*# sourceMappingURL=bootstrap.min.css.map */
