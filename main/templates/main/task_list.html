@@ -16,9 +16,7 @@
     </div>
 </div>
 {% for task in object_list %}
-<!--<a class="btn " href="{% url 'main:task_detail' task.pk %}"-->
-<!--                                   role="button">-->
-<!--    <form action="{% url 'main:task_detail' task.pk %}">-->
+{% if task.author == request.user or perms.main.can_edit_status_task%}
 <a class="btn-a" href="{% url 'main:task_detail' task.pk %}">
     <div class="row row-cols-md-4 ">
         <div class="container-fluid themed-container text-center">
@@ -27,27 +25,76 @@
         <div class="container-fluid themed-container text-center">
             {{task.created_at}}
         </div>
-        {% if task.status == 'new' or task.status == 'work'%}
-        <div class="container-fluid themed-container text-center">
-            <form class="dropdown-item" action="{% url 'main:task_at_work' task.pk %}" method="POST">{% csrf_token %}
-                    <button type="submit" class="btn btn-primary">
-                     {{task.get_status_display}}
-                    </button>
-                    </form>
-        </div>
-
-            {% elif task.status == 'complete' %}
-            <div class="container-fluid themed-container text-center">
-                {{task.get_status_display}}
-            </div>
-
+        <div class="btn-group container-fluid themed-container text-center"
+             style="justify-content: center">
+            {% if task.status == 'complete' %}
+            <form>
+                <button class="btn btn-secondary">
+                    {{task.get_status_display}}
+                </button>
+            </form>
             {% endif %}
-            <div class="container-fluid themed-container text-center">
-                {{task.author}}
-            </div>
+            {% if task.status == 'work'%}
+            <form>
+                <button class="btn btn-primary">
+                    {{task.get_status_display}}
+                </button>
+            </form>
+            {% endif %}
+            {% if task.status == 'new' %}
+            <form>
+                <button class="btn btn-success">
+                    {{task.get_status_display}}
+                </button>
+            </form>
+            {% endif %}
+            {% if task.status != "work" and perms.main.can_edit_status_task %}
+            <form action="{% url 'main:task_at_work' task.pk %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-light">
+                    В работу
+                </button>
+            </form>
+            {% endif %}
+            {% if task.status != "complete" %}
+            <form action="{% url 'main:task_close' task.pk %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-light">
+                    Закрыть
+                </button>
+            </form>
+            {% endif %}
         </div>
-<!--    </form>-->
+        <div class="container-fluid themed-container text-center">
+            {{task.author}}
+        </div>
+    </div>
 </a>
+
+{% endif %}
 {% endfor %}
 {% endif %}
+<ul class="pagination" style="justify-content: center">
+    {% if page_obj.has_previous %}
+    <li class="page-item">
+        <a href="?page={{ page_obj.previous_page_number }}" class="page-link">Предыдущая
+            страница</a>
+    </li>
+    <li class="page-item">
+        <a href="?page=1" class="page-link">1</a></li>
+    {% endif %}
+    <li class="page-item active">
+        <span class="page-link">
+{{ page_obj.number }}
+            <span class="sr-only"></span>
+        </span>
+    </li>
+    {% if page_obj.has_next %}
+    <li class="page-item"><a class="page-link"
+                             href="?page={{ page_obj.next_page_number }}">{{page_obj.next_page_number}}</a>
+    </li>
+    <li class="page-item"><a href="?page={{ page_obj.next_page_number }}"
+                             class="page-link">Следующая страница</a></li>
+    {% endif %}
+</ul>
 {% endblock %}

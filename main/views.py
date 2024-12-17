@@ -1,22 +1,32 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.exceptions import PermissionDenied
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DetailView, ListView, UpdateView, \
-    View
+from django.views.generic import (CreateView, DetailView, ListView, UpdateView,
+                                  View)
 from django.views.generic.detail import SingleObjectMixin
-from main.forms import TaskForm, ModeratorTaskForm
+
+from main.forms import ModeratorTaskForm, TaskForm
 from main.models import Task
 from users.tasks import close_task, new_task, work_task
-from django.core.exceptions import PermissionDenied
+
 
 class TaskListView(LoginRequiredMixin, ListView):
+    paginate_by = 20
     login_url = "users:login"
     model = Task
+
 
 
 class TaskDetailView(LoginRequiredMixin, DetailView):
     model = Task
     fields = "__all__"
+    def get_form_class(self):
+        user = self.request.user
+        if user == self.object.author or user.has_perm("main.can_edit_status_task"):
+            return TaskForm
+        raise PermissionDenied
+
 
 
 class TaskCreateView(LoginRequiredMixin, CreateView):
@@ -63,7 +73,7 @@ class TaskAtWork(SingleObjectMixin, View):
     def post(self, request, *args, **kwargs):
         obj = self.get_object()
         user = self.request.user
-        if obj.status == "new":
+        if obj.status == "new" or obj.status == "complete":
             obj.status = "work"
             obj.save()
             work_task.delay(obj.title, obj.pk, user.email, obj.author.email)

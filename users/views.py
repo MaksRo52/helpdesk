@@ -8,7 +8,7 @@ from django.urls import reverse, reverse_lazy
 from django.utils.crypto import get_random_string
 from django.views import generic
 
-from config.settings import EMAIL_HOST_USER
+from config.settings import DOMAIN_MAIL, EMAIL_HOST_USER
 from users.forms import UserRegisterForm
 from users.models import User
 from users.tasks import authentication
@@ -24,7 +24,7 @@ class UserCreateView(generic.CreateView):
         user.is_active = False
         token = secrets.token_hex(16)
         user.token = token
-        user.email = f"{user.username}@limakmarash.com"
+        user.email = f"{user.username}@{DOMAIN_MAIL}"
         user.save()
         host = self.request.get_host()
         url = f"http://{host}/users/activate/{token}/"
