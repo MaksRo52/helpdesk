@@ -1,0 +1,68 @@
+version: '3'
+services:
+  db:
+    image: postgres:16
+    restart: on-failure
+    env_file:
+      - .env
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data/
+    healthcheck:
+      test: [ "CMD-SHELL", "-c", "pg_isready -U $POSTGRES_USER" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    expose:
+      - "5432"
+
+  app:
+    build: .
+    tty: true
+    ports:
+      - "8000:8000"
+    command: sh -c "poetry run python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/app
+    depends_on:
+      db:
+        condition: service_healthy
+    env_file:
+      - .env
+
+  redis:
+    image: redis:latest
+    restart: on-failure
+    expose:
+      - "6379"
+
+  celery:
+    build: .
+    tty: true
+    command: sh -c "poetry run celery -A config worker -l info"
+    restart: on-failure
+    volumes:
+      - .:/app
+    depends_on:
+      - redis
+      - app
+      - db
+    env_file:
+      - .env
+
+  celery-beat:
+    build: .
+    tty: true
+    command: sh -c "poetry run celery -A config beat -l info"
+    restart: on-failure
+    volumes:
+      - .:/app
+    depends_on:
+      - redis
+      - app
+      - db
+    env_file:
+      - .env
+
+volumes:
+  pg_data:
+    driver: local
