@@ -8,7 +8,6 @@ __pycache__/
 
 # correct
 .idea
-
 # Distribution / packaging
 .Python
 build/
