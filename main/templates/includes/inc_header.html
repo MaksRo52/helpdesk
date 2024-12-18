@@ -19,11 +19,11 @@
                     </form>
                 {% else %}
                 <a href="{% url 'users:login' %}">
-                    <button type="button" class="btn btn-outline-light me-2">Войти</button>
+                    <button type="button" class="btn btn-warning">Войти</button>
                 </a>
-                <a href="{% url 'users:register' %}">
-                    <button type="button" class="btn btn-warning">Зарегистрироваться</button>
-                </a>
+<!--                <a href="{% url 'users:register' %}">-->
+<!--                    <button type="button" class="btn btn-warning">Зарегистрироваться</button>-->
+<!--                </a>-->
                 {% endif %}
             </div>
         </div>
