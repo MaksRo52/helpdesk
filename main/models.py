@@ -15,10 +15,12 @@ class Task(models.Model):
         choices={"new": "Создана", "work": "В работе", "complete": "Выполнена"},
     )
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
+    start_date = models.DateTimeField(verbose_name="Дата начала выполнения", **NULLABLE)
+    end_date = models.DateTimeField(verbose_name="Дата завершения выполнения", **NULLABLE)
     priority = models.CharField(
         max_length=8,
         verbose_name="Приоритет",
-        choices={"low": "Низкий", "medium": "Средний", "high": "Высокий"},
+        choices={"low": "Низкий", "medium": "Средний", "high": "Высокий"}, **NULLABLE
     )
     author = models.ForeignKey(
         User, verbose_name="автор", on_delete=models.SET_NULL, **NULLABLE
@@ -26,6 +28,8 @@ class Task(models.Model):
     img = models.ImageField(**NULLABLE, verbose_name="Скриншот/фото проблемы")
     commentary = models.CharField(
         max_length=500, verbose_name="Комментарий", **NULLABLE
+    )
+    executor = models.ForeignKey( User, verbose_name="Исполнитель", on_delete=models.SET_NULL, related_name="task_executor", **NULLABLE
     )
 
 
@@ -59,18 +63,3 @@ class TaskComment(models.Model):
             return f"{self.author} - {self.task.title}"
 
 
-class TaskExecutor(models.Model):
-    task = models.ForeignKey(Task, verbose_name="Задача", on_delete=models.CASCADE)
-    executor = models.ForeignKey(
-        User, verbose_name="Исполнитель", on_delete=models.SET_NULL, **NULLABLE
-    )
-    start_date = models.DateTimeField(verbose_name="Дата начала выполнения")
-    end_date = models.DateTimeField(verbose_name="Дата завершения выполнения")
-
-    class Meta:
-        verbose_name = "Исполнитель задачи"
-        verbose_name_plural = "Исполнители задач"
-        ordering = ("-start_date",)
-
-        def __str__(self):
-            return f"{self.executor} - {self.task.title}"

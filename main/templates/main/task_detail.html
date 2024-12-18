@@ -6,14 +6,21 @@
         <div class="col-10">
             <div class="card mb-4 box-shadow">
                 <div class="card-header">
-                    <h4 class="my-0 font-weight-normal">Тема: {{object.title}} </h4>
+                    <h4 class="my-0 font-weight-normal" style="text-align: left">Тема: {{object.title}} </h4>
                 </div>
                 <div class="card-body">
+                    {% if object.img %}
                     {% include 'includes/inc_image.html' %}
-                    <p class="card-text">Содержание: {{object.description}}</p>
-                    <p class="card-text">Статус: {{ object.get_status_display }}</p>
-                    <p class="card-text">Дата создания: {{ object.created_at }}</p>
-                    <p class="card-text">Решение: {{ object.commentary }}</p>
+                    {% endif %}
+                    <div class="card-text" style="text-align: left; border:1px ; margin-bottom: 10px">Содержание: {{object.description}}</div>
+                    <div class="card-text" style="text-align: left; border:1px ; margin-bottom: 10px">Статус: {{ object.get_status_display }}</div>
+                    <div class="card-text" style="text-align: left; border:1px ; margin-bottom: 10px">Дата создания: {{ object.created_at }}</div>
+                    {% if object.commentary %}
+                    <div class="card-text" style="text-align: left; border:1px ; margin-bottom: 10px">Решение: {{ object.commentary }}</div>
+                    {% endif %}
+                    {% if object.executor %}
+                    <div class="card-text" style="text-align: left; border:1px ; margin-bottom: 10px">Исполнитель: {{ object.executor.username }}</div>
+                    {% endif %}
 <!--                    <a class="btn btn-primary" href="{% url 'main:task_detail' task.pk %}"-->
 <!--                       role="button">Посмотреть</a>-->
                     <a class="btn btn-primary" href="{% url 'main:task_update' task.pk %}"

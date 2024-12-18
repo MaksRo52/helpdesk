@@ -9,7 +9,7 @@ class User(AbstractUser):
     username = models.CharField(
         max_length=250,
         verbose_name="Логин",
-        help_text="Введите ваш логин\nНапример i.ivanov", unique=True
+        help_text="Введите ваш логин, например i.ivanov", unique=True
     )
     city = models.CharField(max_length=20,
                             verbose_name="Город", help_text="Выберите город",

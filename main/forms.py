@@ -16,7 +16,7 @@ class StyleFormMixin(ModelForm):
 class TaskForm(StyleFormMixin, ModelForm):
     class Meta:
         model = Task
-        exclude = ("status", "priority", "author", "commentary")
+        fields = ("title", "description", "img", )
 
 
 class ModeratorTaskForm(StyleFormMixin, ModelForm):
