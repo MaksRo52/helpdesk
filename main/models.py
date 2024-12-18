@@ -57,3 +57,20 @@ class TaskComment(models.Model):
 
         def __str__(self):
             return f"{self.author} - {self.task.title}"
+
+
+class TaskExecutor(models.Model):
+    task = models.ForeignKey(Task, verbose_name="Задача", on_delete=models.CASCADE)
+    executor = models.ForeignKey(
+        User, verbose_name="Исполнитель", on_delete=models.SET_NULL, **NULLABLE
+    )
+    start_date = models.DateTimeField(verbose_name="Дата начала выполнения")
+    end_date = models.DateTimeField(verbose_name="Дата завершения выполнения")
+
+    class Meta:
+        verbose_name = "Исполнитель задачи"
+        verbose_name_plural = "Исполнители задач"
+        ordering = ("-start_date",)
+
+        def __str__(self):
+            return f"{self.executor} - {self.task.title}"
