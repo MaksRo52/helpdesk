@@ -12,7 +12,7 @@
         создания</h6></div>
     <div class="container-fluid themed-container text-center"><h6>Статус</h6>
     </div>
-    <div class="container-fluid themed-container text-center"><h6>Автор</h6>
+    <div class="container-fluid themed-container text-center"><h6>Автор / Исполнитель</h6>
     </div>
 </div>
 {% for task in object_list %}
@@ -67,6 +67,9 @@
         </div>
         <div class="container-fluid themed-container text-center">
             {{task.author}}
+            {% if task.executor %}
+            / {{task.executor.username}}
+            {% endif %}
         </div>
     </div>
 </a>

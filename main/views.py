@@ -77,7 +77,7 @@ class TaskAtWork(SingleObjectMixin, View):
             obj.status = "work"
             obj.executor = user
             obj.save()
-            work_task.delay(obj.title, obj.pk, user.email, obj.author.email)
+            work_task.delay(obj.title, obj.pk, user.username, obj.author.email)
         return HttpResponseRedirect(reverse_lazy('main:index'))
 
 

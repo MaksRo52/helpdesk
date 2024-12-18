@@ -25,7 +25,7 @@ class Task(models.Model):
     author = models.ForeignKey(
         User, verbose_name="автор", on_delete=models.SET_NULL, **NULLABLE
     )
-    img = models.ImageField(**NULLABLE, verbose_name="Скриншот/фото проблемы")
+    img = models.ImageField(upload_to="Task", **NULLABLE, verbose_name="Скриншот/фото проблемы")
     commentary = models.CharField(
         max_length=500, verbose_name="Комментарий", **NULLABLE
     )
