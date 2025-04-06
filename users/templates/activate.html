@@ -1,12 +1,20 @@
 {% load static i18n %}
-<body class="d-flex align-items-center justify-content-center vh-100 bg-body-tertiary">
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>{% translate "Вход" %} | HelpDesk</title>
+  <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}">
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
   <link href="{% static 'css/sign-in.css' %}" rel="stylesheet">
+</head>
 
+<body class="d-flex align-items-center justify-content-center vh-100 bg-body-tertiary">
   <main class="form-signin card p-4 shadow-sm rounded-4" style="max-width: 420px; width: 100%;">
     <form method="post" enctype="multipart/form-data" novalidate>
       {% csrf_token %}
       <div class="text-center mb-3">
-        <img class="mb-3" src="{% static 'img/Logo.svg' %}" alt="Logo" style="height: 80px;">
+        <img class="mb-3" src="{% static 'img/logo.png' %}" alt="Logo" style="height: 80px;">
         <h5 class="fw-bold text-success">{% translate "Учетная запись успешно активирована, повторите вход" %}</h5>
       </div>
 

@@ -1,15 +1,13 @@
 {% extends 'main/index.html' %}
 {% load static i18n %}
-
 {% block content %}
+
 <script src="{% static 'js/fancybox.js' %}"></script>
 <link rel="stylesheet" href="{% static 'css/fancybox.css' %}"/>
-
 <div class="container mt-5">
   <div class="text-center mb-4">
       <h2><span class="text-bg">{% translate "Изменение профиля" %}</span></h2>
   </div>
-
   <form method="post" enctype="multipart/form-data" class="needs-validation">
     <div class="card shadow-sm border-0 rounded-3 overflow-hidden">
       <div class="card-header bg-primary text-white rounded-top text-center">
