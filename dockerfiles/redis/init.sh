@@ -9,7 +9,6 @@
 # 2, the system kernel is allowed to allocate a memory whose size could be bigger than
 # the sum of the size of physical memory and the size of exchange workspace to the process.
 #sysctl -w vm.overcommit_memory=1
-
 # Start redis server
 #redis-server /usr/local/etc/redis/redis.conf --loglevel warning --bind 0.0.0.0
 redis-server --loglevel warning --bind 0.0.0.0
