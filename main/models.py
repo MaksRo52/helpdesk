@@ -96,7 +96,7 @@ class Task(models.Model):
         help_text=_(
             "Укажите наблюдателей для заявки (При необходимости) Удерживайте “Control“)"
         ),
-        **NULLABLE,
+        blank=True,
     )
 
     def save(self, *args, **kwargs):
