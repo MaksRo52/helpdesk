@@ -1,0 +1,15 @@
+{% load tags %}
+{% load static %}
+<script src="{% static 'js/fancybox.js' %}"></script>
+<link rel="stylesheet" href="{% static 'css/fancybox.css' %}"/>
+{% if object.img %}
+<a href="{{ object.img | mymedia }}" data-fancybox data-caption="Single image">
+    <img class="w-25" alt="клик для увеличения" src="{{ object.img | mymedia }}"
+         onerror="this.onerror=null; this.src='{% static '/img/no_image.jpg' %}'">
+    </a>
+{% elif users.avatar %}
+<img class="w-100" src="{{ users.avatar | mymedia }}"
+     onerror="this.onerror=null; this.src='{% static '/img/no_image.jpg' %}'">
+{% else %}
+<img class="w-20" src="{% static '/img/no_image.jpg' %}">
+{% endif %}

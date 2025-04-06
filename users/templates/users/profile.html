@@ -1,0 +1,56 @@
+{% extends 'main/index.html' %}
+{% load tags %}
+{% load static i18n %}
+
+{% block content %}
+<script src="{% static 'js/fancybox.js' %}"></script>
+<link rel="stylesheet" href="{% static 'css/fancybox.css' %}"/>
+<div class="container mt-5">
+    <div class="text-center">
+        <h2 class="mb-4"><span class="text-bg">{% translate "Сведения о пользователе" %}</span></h2>
+    </div>
+    <div class="d-flex justify-content-center align-items-center">
+        <div class="col-md-8 ">
+            <div class="card p-4 user-card  {% if user.username == 'm.romantsov' %} pulse {% endif %}">
+                <div class="text-center">
+                    {% if user.avatar %}
+                    <a href="{{ user.avatar.url }}" data-fancybox>
+                        <img class="rounded-circle shadow" src="{{ user.avatar.url }}" alt="Аватар" style="width: 120px; height: 120px; object-fit: cover;">
+                    </a>
+                    {% endif %}
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title text-center">{{ user.first_name }} {{ user.last_name }}</h5>
+
+                    {% if user.username == "m.romantsov" %}
+                    <p class="text-center dev-note" style="font-weight: bold;">{% translate "Автор и разработчик" %} HelpDesk</p>
+                    {% endif %}
+
+                    <hr>
+                    <p><strong>{% translate "Логин" %}:</strong> {{ user.username }}</p>
+                    <p><strong>{% translate "Почта" %}:</strong> {{ user.email }}</p>
+                    <p><strong>{% translate "Город" %}:</strong> {{ user.get_city_display }}</p>
+
+                    {% if user == request.user or request.user.is_staff or request.user.is_leader %}
+                        <p><strong>{% translate "Телефон" %}:</strong> {{ user.phone_number }}</p>
+                    {% else %}
+                        <p><strong>{% translate "Телефон" %}:</strong> <i>{% translate "скрыт" %}</i></p>
+                    {% endif %}
+
+                    <div class="d-flex justify-content-between mt-4">
+                        <a href="{% url 'main:index' %}" class="btn btn-secondary text-decoration-none">{% translate "Назад" %}</a>
+
+                        {% if user == request.user %}
+                        <div>
+                            <a href="{% url 'users:profile_update' user.pk %}" class="btn btn-primary me-2 text-decoration-none">{% translate "Изменить данные" %}</a>
+                            <a href="{% url 'users:password_change' %}" class="btn btn-warning text-decoration-none">{% translate "Изменить пароль" %}</a>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

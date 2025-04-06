@@ -1,0 +1,25 @@
+/* === Manrope (переменный) === */
+@font-face {
+  font-family: 'Manrope';
+  src: url('../fonts/Manrope-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* === JetBrains Mono (переменный) === */
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('../fonts/JetBrainsMono-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+.neuro-chat-window,
+#chatMessages,
+#chatMessages * {
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 1.9vh;
+  line-height: 1.6;
+}

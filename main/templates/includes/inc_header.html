@@ -1,0 +1,66 @@
+{% load static i18n %}
+<link href="{% static 'css/theme.css' %}" rel="stylesheet">
+<link href="{% static 'css/main.css' %}" rel="stylesheet">
+
+<header class="navbar navbar-expand-lg px-3 py-2 theme-navbar">
+  <div class="container-fluid">
+    <!-- Логотип -->
+    <a href="/" class="navbar-brand d-flex align-items-center">
+      <img src="{% static 'img/Logo.svg' %}" alt="Logo" style="height: 50px;">
+    </a>
+
+    <!-- Кнопка переключения меню на мобильных -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Основное меню -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a href="/" class="nav-link menu-btn">{% translate "Главная" %}</a>
+        </li>
+
+        <!-- Выпадающий список NAS -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle menu-btn" href="#" id="nasDropdown" role="button" data-bs-toggle="dropdown">
+            Список ссылок
+          </a>
+          <ul class="dropdown-menu theme-dropdown">
+            <li><a class="dropdown-item hover-bg" href="#" target="_blank">выбор 1</a></li>
+            <li><a class="dropdown-item hover-bg" href="#" target="_blank">выбор 2</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link menu-btn" target="_blank">Ссылка</a>
+        </li>
+      </ul>
+
+      <!-- Переключатель темы -->
+        <div class="form-check form-switch me-3">
+          <input class="form-check-input theme-toggle-switch" type="checkbox" id="themeToggle">
+          <label class="form-check-label theme-toggle-label" for="themeToggle"></label>
+        </div>
+
+      <!-- Авторизация -->
+      <div class="d-flex align-items-center">
+        {% if user.is_authenticated %}
+          <a href="{% url 'main:task_create' %}" class="btn new_task me-2">{% translate "Создать задачу" %}</a>
+          <a href="{% url 'users:profile' request.user.pk %}" class="btn theme-btn-outline me-2 d-flex align-items-center user-btn">
+            {% if request.user.avatar %}
+              <img src="{{ request.user.avatar.url }}" alt="Avatar" class="rounded-circle me-2" style="width: 30px; height: 30px;">
+            {% endif %}
+            {{ request.user.username }}
+          </a>
+
+          <form action="{% url 'users:logout' %}" method="post" class="mb-0">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-danger exit-btn">{% translate "Выйти" %}</button>
+          </form>
+        {% else %}
+          <a href="{% url 'users:login' %}" class="btn btn-warning">{% translate "Войти" %}</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</header>

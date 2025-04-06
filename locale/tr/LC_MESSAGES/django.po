@@ -1,0 +1,507 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-03-25 13:21+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: .\main\models.py:33 .\main\templates\main\task_detail.html:53
+#: .\main\templates\main\task_form.html:95
+msgid "Описание"
+msgstr "Tanım"
+
+#: .\main\models.py:34
+msgid "Введите описание"
+msgstr "Açıklamayı girin"
+
+#: .\main\models.py:40
+msgid "Статус заявки"
+msgstr "Uygulamanın durumu"
+
+#: .\main\models.py:46
+msgid "Дата завершения выполнения"
+msgstr "İnfazın tamamlanma tarihi"
+
+#: .\main\models.py:55
+msgid "автор"
+msgstr "yazar"
+
+#: .\main\models.py:60
+msgid "Файлы"
+msgstr "Dosyalar"
+
+#: .\main\models.py:61 .\main\templates\main\task_detail.html:37
+#: .\main\templates\main\task_detail.html:162
+msgid "Комментарий"
+msgstr "Yorum"
+
+#: .\main\models.py:64 .\main\templates\main\task_detail.html:64
+#: .\main\templates\main\task_form.html:111
+msgid "Исполнитель"
+msgstr "Yönetici"
+
+#: .\main\models.py:70 .\main\templates\main\task_detail.html:29
+msgid "Утверждено"
+msgstr "Onaylı"
+
+#: .\main\models.py:70 .\main\templates\main\task_detail.html:101
+msgid "Утвердить обращение"
+msgstr "İtirazı onaylayın"
+
+#: .\main\models.py:75
+msgid ""
+"Введите номер AnyDesk для подключения. Загрузить AnyDesk можно внизу "
+"страницы."
+msgstr ""
+"Bağlantı için AnyDesk numarasını girin. Sayfanın altındaki herhangi "
+"birdesk'i indirebilirsiniz."
+
+#: .\main\models.py:81 .\main\templates\main\task_detail.html:26
+#: .\main\templates\main\task_form.html:74
+msgid "Согласующий"
+msgstr "Ünsüz"
+
+#: .\main\models.py:82
+msgid "Укажите согласующего для утверждения заявки (При необходимости)"
+msgstr "Başvurunun onaylanması için onay belirtin (gerekirse)"
+
+#: .\main\models.py:89
+msgid "Категория заявки"
+msgstr "Uygulama kategorisi"
+
+#: .\main\models.py:95 .\main\templates\main\task_detail.html:75
+#: .\main\templates\main\task_form.html:128
+msgid "Наблюдатели"
+msgstr "Gözlemciler"
+
+#: .\main\models.py:97
+msgid ""
+"Укажите наблюдателей для заявки (При необходимости) Удерживайте “Control“)"
+msgstr "Uygulama için gözlemcileri belirtin (gerekirse) “Kontrol” tutun)"
+
+#: .\main\templates\includes\inc_header.html:19
+msgid "Главная"
+msgstr "Ev"
+
+#: .\main\templates\includes\inc_header.html:34
+#: .\users\templates\users\password_change.html:15
+#: .\users\templates\users\profile.html:31
+#: .\users\templates\users\update_profile.html:28
+msgid "Почта"
+msgstr "Postane"
+
+#: .\main\templates\includes\inc_header.html:49
+msgid "Создать задачу"
+msgstr "Bir Görev Oluşturun"
+
+#: .\main\templates\includes\inc_header.html:62
+msgid "Выйти"
+msgstr "Dışarı çıkmak"
+
+#: .\main\templates\includes\inc_header.html:65
+#: .\users\templates\activate.html:25 .\users\templates\login.html:24
+msgid "Войти"
+msgstr "Girmek"
+
+#: .\main\templates\main\index.html:44
+msgid "Загрузки"
+msgstr "Yükleme"
+
+#: .\main\templates\main\index.html:50
+msgid "Дополнительно"
+msgstr "Ek olarak"
+
+#: .\main\templates\main\index.html:52
+msgid "Телеграм бот"
+msgstr "Telgraf botu"
+
+#: .\main\templates\main\index.html:54
+msgid "В админку"
+msgstr "Yönetici panelinde"
+
+#: .\main\templates\main\index.html:56
+#, fuzzy
+#| msgid "Автор / Исполнитель"
+msgid "О разработчике"
+msgstr "Yazar / Yüklenici"
+
+#: .\main\templates\main\index.html:60
+msgid "Язык"
+msgstr "Dil"
+
+#: .\main\templates\main\index.html:86
+msgid "Спросить нейросеть"
+msgstr "Bir sinir ağı sorun"
+
+#: .\main\templates\main\index.html:94
+msgid "Нейросеть"
+msgstr "Sinir ağı"
+
+#: .\main\templates\main\index.html:102
+#: .\main\templates\main\task_detail.html:184
+msgid "Отправить"
+msgstr "Göndermek"
+
+#: .\main\templates\main\index.html:107
+msgid "Очистить чат"
+msgstr "Sohbeti Temizle"
+
+#: .\main\templates\main\partials\task_list_dynamic.html:97
+msgid "Выполнить"
+msgstr "Rol yapmak"
+
+#: .\main\templates\main\partials\task_list_dynamic.html:125
+msgid "Задачи не найдены."
+msgstr "Görevler bulunamıyor."
+
+#: .\main\templates\main\partials\task_list_dynamic.html:131
+#: .\main\templates\main\task_detail.html:144
+#: .\users\templates\users\profile.html:41
+msgid "Назад"
+msgstr "Geri"
+
+#: .\main\templates\main\partials\task_list_dynamic.html:147
+msgid "Вперед"
+msgstr "İleri"
+
+#: .\main\templates\main\task_detail.html:9
+msgid "Обращение"
+msgstr "Çekici"
+
+#: .\main\templates\main\task_detail.html:22
+#: .\main\templates\main\task_form.html:41
+#: .\main\templates\main\task_list.html:51
+msgid "Категория"
+msgstr "Kategori"
+
+#: .\main\templates\main\task_detail.html:31
+msgid "Не утверждено"
+msgstr "Onaylanmadı"
+
+#: .\main\templates\main\task_detail.html:44
+msgid "Владелец"
+msgstr "Mal sahibi"
+
+#: .\main\templates\main\task_detail.html:59
+msgid "Скриншот"
+msgstr "Ekran görüntüsü"
+
+#: .\main\templates\main\task_detail.html:89
+msgid "Создано"
+msgstr "Yaratılmış"
+
+#: .\main\templates\main\task_detail.html:91
+msgid "Принято в работу"
+msgstr "İşe kabul edildi"
+
+#: .\main\templates\main\task_detail.html:94
+msgid "Завершено"
+msgstr "Tamamlanmış"
+
+#: .\main\templates\main\task_detail.html:104
+msgid "Отказать"
+msgstr "Reddetmek"
+
+#: .\main\templates\main\task_detail.html:111
+msgid "Взять в работу"
+msgstr "İşe almak"
+
+#: .\main\templates\main\task_detail.html:117
+#: .\main\templates\main\task_detail.html:123
+msgid "Закрыть обращение"
+msgstr "İtirazı kapat"
+
+#: .\main\templates\main\task_detail.html:136
+#: .\users\templates\users\password_change.html:35
+msgid "Изменить"
+msgstr "Değiştirmek"
+
+#: .\main\templates\main\task_detail.html:155
+msgid "Утвердите обращение"
+msgstr "İtirazı onaylayın"
+
+#: .\main\templates\main\task_detail.html:165
+msgid "Да, утвердить"
+msgstr "Evet, onayla"
+
+#: .\main\templates\main\task_detail.html:177
+msgid "Причина отказа"
+msgstr "Reddetmenin nedeni"
+
+#: .\main\templates\main\task_detail.html:195
+msgid "Закрыть обращение?"
+msgstr "İtirazı kapatın mı?"
+
+#: .\main\templates\main\task_detail.html:201
+msgid "Да, закрыть обращение"
+msgstr "Evet, itirazı kapatın"
+
+#: .\main\templates\main\task_detail.html:214
+msgid "Комментарии"
+msgstr "Yorumlar"
+
+#: .\main\templates\main\task_detail.html:232
+msgid "Комментариев пока нет"
+msgstr "Henüz yorum yok"
+
+#: .\main\templates\main\task_detail.html:238
+msgid "Добавить комментарий"
+msgstr "Yorum ekle"
+
+#: .\main\templates\main\task_detail.html:243
+msgid "Отправить комментарий"
+msgstr "Yorum Gönder"
+
+#: .\main\templates\main\task_form.html:6
+msgid "Создание заявки"
+msgstr "Bir Uygulama Oluşturma"
+
+#: .\main\templates\main\task_form.html:26
+#: .\main\templates\main\task_list.html:87
+msgid "Тема"
+msgstr "Başlık"
+
+#: .\main\templates\main\task_form.html:67
+msgid ""
+"Anydesk Необходимо указать, если заявка требует подключения по обращению."
+msgstr "Başvuru temyiz bağlantısı gerektiriyorsa AnyDesk belirtilmelidir."
+
+#: .\main\templates\main\task_form.html:69
+msgid "Введите номер AnyDesk."
+msgstr "AnyDesk numarasını girin."
+
+#: .\main\templates\main\task_form.html:69
+msgid "Скачать"
+msgstr "İndirmek"
+
+#: .\main\templates\main\task_form.html:87
+msgid ""
+"Согласующего необходимо указать, если обращение требует согласования с "
+"руководителем, например на предоставление доступа."
+msgstr ""
+"İtiraz, örneğin erişim sağlamak için kafa ile koordinasyon gerektiriyorsa, "
+"onaylanmalıdır."
+
+#: .\main\templates\main\task_form.html:90
+#: .\main\templates\main\task_form.html:142
+msgid "Не обязательно к заполнению."
+msgstr "Mutlaka doldurmak için değil."
+
+#: .\main\templates\main\task_form.html:98
+msgid "Опишите проблему подробно."
+msgstr "Sorunu ayrıntılı olarak açıklayın."
+
+#: .\main\templates\main\task_form.html:140
+msgid ""
+"Если необходимо, чтобы заявку увидели другие сотрудники, например, для "
+"отслеживания статуса заявки, выберите наблюдателей."
+msgstr ""
+"Gerekirse, diğer çalışanların başvuruyu görmesi için, örneğin bir "
+"uygulamanın durumunu izlemek için gözlemcileri seçin."
+
+#: .\main\templates\main\task_form.html:147
+#: .\users\templates\users\update_profile.html:95
+msgid "Сохранить"
+msgstr "Kaydetmek"
+
+#: .\main\templates\main\task_form.html:147
+msgid "Создать"
+msgstr "Yaratmak"
+
+#: .\main\templates\main\task_form.html:149
+#: .\users\templates\users\password_change.html:37
+#: .\users\templates\users\recovery_password.html:28
+#: .\users\templates\users\update_profile.html:96
+msgid "Отмена"
+msgstr "İptal"
+
+#: .\main\templates\main\task_list.html:14
+msgid "Система решения IT- заявок"
+msgstr "Sistem Çözümleri IT- Uygulama"
+
+#: .\main\templates\main\task_list.html:19
+msgid "Задачи"
+msgstr "Görevler"
+
+#: .\main\templates\main\task_list.html:23
+msgid "Фильтры"
+msgstr "Filtreler"
+
+#: .\main\templates\main\task_list.html:30 .\users\models.py:37
+#: .\users\templates\users\profile.html:32
+msgid "Город"
+msgstr "Şehir"
+
+#: .\main\templates\main\task_list.html:32
+msgid "Все города"
+msgstr "Tüm Şehirler"
+
+#: .\main\templates\main\task_list.html:41
+#: .\main\templates\main\task_list.html:89
+msgid "Статус"
+msgstr "Durum"
+
+#: .\main\templates\main\task_list.html:43
+msgid "Все статусы"
+msgstr "Tüm Durumlar"
+
+#: .\main\templates\main\task_list.html:53
+msgid "Все категории"
+msgstr "Tüm kategoriler"
+
+#: .\main\templates\main\task_list.html:64
+msgid "Только мои задачи"
+msgstr "Sadece görevlerim"
+
+#: .\main\templates\main\task_list.html:71
+msgid "Показать закрытые задачи"
+msgstr "Kapalı görevleri göster"
+
+#: .\main\templates\main\task_list.html:75
+msgid "Применить"
+msgstr "Uygula"
+
+#: .\main\templates\main\task_list.html:76
+msgid "Сбросить"
+msgstr "Sıfırlamak"
+
+#: .\main\templates\main\task_list.html:86
+msgid "Номер"
+msgstr "Sayı"
+
+#: .\main\templates\main\task_list.html:88
+msgid "Дата создания"
+msgstr "Yaratılış tarihi"
+
+#: .\main\templates\main\task_list.html:90
+msgid "Автор / Исполнитель"
+msgstr "Yazar / Yüklenici"
+
+#: .\users\models.py:31 .\users\templates\activate.html:12
+#: .\users\templates\login.html:11
+#: .\users\templates\users\password_change.html:15
+#: .\users\templates\users\profile.html:30
+#: .\users\templates\users\update_profile.html:24
+msgid "Логин"
+msgstr "Giriş yapmak"
+
+#: .\users\models.py:38
+msgid "Выберите город"
+msgstr "Şehri Seçin"
+
+#: .\users\models.py:50
+msgid "Номер телефона"
+msgstr "Telefon numarası"
+
+#: .\users\models.py:51
+msgid "Введите номер мобильного телефона"
+msgstr "Cep telefonu numaranızı girin"
+
+#: .\users\models.py:58 .\users\templates\users\update_profile.html:77
+msgid "Фото профиля"
+msgstr "Fotoğraf Profili"
+
+#: .\users\models.py:61
+msgid "Телеграм оповещения"
+msgstr "Telgraf bildirimi"
+
+#: .\users\templates\activate.html:8
+msgid "Учетная запись успешно активирована, повторите вход"
+msgstr "Hesap başarıyla etkinleştirildi, girişi tekrarlayın"
+
+#: .\users\templates\activate.html:16 .\users\templates\login.html:15
+msgid "Пароль"
+msgstr "Şifre"
+
+#: .\users\templates\activate.html:18 .\users\templates\login.html:17
+#, fuzzy
+#| msgid "Изменить пароль"
+msgid "Забыли пароль"
+msgstr "Şifre değiştir"
+
+#: .\users\templates\activate.html:27 .\users\templates\login.html:26
+#: .\users\templates\users\user_form.html:35
+msgid "Зарегистрироваться"
+msgstr "Kayıt olmak"
+
+#: .\users\templates\login.html:8
+msgid "Вход"
+msgstr "Giriş"
+
+#: .\users\templates\users\password_change.html:7
+#, fuzzy
+#| msgid "Изменение профиля"
+msgid "Изменение пароля"
+msgstr "Profili Değiştirme"
+
+#: .\users\templates\users\profile.html:10
+msgid "Сведения о пользователе"
+msgstr "Kullanıcı bilgileri"
+
+#: .\users\templates\users\profile.html:26
+#, fuzzy
+#| msgid "Автор / Исполнитель"
+msgid "Автор и разработчик"
+msgstr "Yazar / Yüklenici"
+
+#: .\users\templates\users\profile.html:35
+#: .\users\templates\users\profile.html:37
+msgid "Телефон"
+msgstr "Telefon"
+
+#: .\users\templates\users\profile.html:37
+msgid "скрыт"
+msgstr "Gizlenmiş"
+
+#: .\users\templates\users\profile.html:45
+msgid "Изменить данные"
+msgstr "Verileri Değiştir"
+
+#: .\users\templates\users\profile.html:46
+msgid "Изменить пароль"
+msgstr "Şifre değiştir"
+
+#: .\users\templates\users\recovery_password.html:7
+#, fuzzy
+#| msgid "Изменение профиля"
+msgid "Восстановление пароля"
+msgstr "Profili Değiştirme"
+
+#: .\users\templates\users\recovery_password.html:26
+#, fuzzy
+#| msgid "Отправить"
+msgid "Отправить письмо"
+msgstr "Göndermek"
+
+#: .\users\templates\users\update_profile.html:8
+msgid "Изменение профиля"
+msgstr "Profili Değiştirme"
+
+#: .\users\templates\users\update_profile.html:17
+msgid "Данные профиля"
+msgstr "Profil verileri"
+
+#: .\users\templates\users\update_profile.html:70
+msgid "Включить уведомления в Telegram"
+msgstr "Telgrafta Bildirimleri Etkinleştir"
+
+#: .\users\templates\users\user_form.html:7
+msgid "Регистрация в системе"
+msgstr "Sistemde kayıt"
+
+#: .\users\templates\users\user_form.html:12
+msgid "После регистрации необходимо зайти на почту для активации аккаунта"
+msgstr "Kayıttan sonra, hesabı etkinleştirmek için postaya gitmelisiniz"

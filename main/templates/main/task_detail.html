@@ -1,0 +1,274 @@
+{% extends 'main/index.html' %}
+{% load tags %}
+{% load static i18n %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card shadow-lg rounded-3 theme-card">
+        <div class="card-header d-flex justify-content-between align-items-center bg-dark text-white rounded-top">
+            <h5 class="mb-0"><i class="bi bi-clipboard-check"></i> {% translate "Обращение" %} №{{ object.pk }}: {{ object.title }}</h5>
+            <span class="badge
+                {% if object.status == 'complete' %} bg-success
+                {% elif object.status == 'close' %} bg-warning text-dark
+                {% elif object.status == 'work' %} bg-primary
+                {% elif object.status == 'new' %} bg-info text-dark
+                {% else %} bg-secondary {% endif %}
+                px-3 py-2 rounded-pill fw-semibold shadow-sm">
+                {{ object.get_status_display }}
+            </span>
+        </div>
+
+        <div class="card-body">
+            <p class="theme-label"><strong>{% translate "Категория" %}:</strong> {{ object.get_category_display }}</p>
+
+            {% if object.coordinator %}
+            <p class="theme-label">
+                <strong>{% translate "Согласующий" %}:</strong>
+                <a href="{% url 'users:profile' object.coordinator.pk %}" class="link-info">{{ object.coordinator.username }}</a>
+                {% if object.wishes %}
+                <span class="text-success ms-2">✓ {% translate "Утверждено" %}</span>
+                {% else %}
+                <span class="text-danger ms-2">✗ {% translate "Не утверждено" %}</span>
+                {% endif %}
+            </p>
+            {% endif %}
+
+            {% if object.commentary %}
+            <p class="theme-label"><strong>{% translate "Комментарий" %}:</strong> {{ object.commentary | safe }}</p>
+            {% endif %}
+
+            {% if object.anydesk %}
+            <p class="theme-label"><strong>Anydesk:</strong> {{ object.anydesk }}</p>
+            {% endif %}
+
+            <p class="theme-label"><strong>{% translate "Владелец" %}:</strong>
+                <a href="{% url 'users:profile' object.author.pk %}" class="theme-link">
+                    {% if object.author.avatar %}
+                    <img src="{{ object.author.avatar.url }}" alt="avatar" class="rounded-circle me-2" width="30">
+                    {% endif %}
+                    {{ object.author }}
+                </a>
+            </p>
+
+            <p class="theme-label"><strong>{% translate "Описание" %}:</strong></p>
+            <div class="overflow-auto border p-3 rounded ">
+                {{ object.description | safe }}
+            </div>
+
+            {% if object.img %}
+            <p class="theme-label"><strong>{% translate "Скриншот" %}:</strong></p>
+            {% include 'includes/inc_image.html' %}
+            {% endif %}
+
+            {% if object.executor %}
+            <p class="theme-label"><strong>{% translate "Исполнитель" %}:</strong>
+                <a href="{% url 'users:profile' object.executor.pk %}" class="link-info">
+                    {% if object.executor.avatar %}
+                    <img src="{{ object.executor.avatar.url }}" alt="avatar" class="rounded-circle me-2" width="30">
+                    {% endif %}
+                    {{ object.executor.username }}
+                </a>
+            </p>
+            {% endif %}
+
+            {% if object.watcher.exists %}
+            <p class="theme-label"><strong>{% translate "Наблюдатели" %}:</strong></p>
+            <ul class="list-group list-group-flush">
+                {% for watcher in object.watcher.all %}
+                <li class="list-group-item theme-bg-soft">
+                    <a href="{% url 'users:profile' watcher.pk %}" class="theme-link">
+                        <i class="bi bi-eye-fill"></i> {{ watcher.username }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+            <hr>
+
+            <p class="theme-label"><strong>{% translate "Создано" %}:</strong> {{ object.created_at }}</p>
+            {% if object.start_date %}
+            <p class="theme-label"><strong>{% translate "Принято в работу" %}:</strong> {{ object.start_date }}</p>
+            {% endif %}
+            {% if object.end_date %}
+            <p class="theme-label"><strong>{% translate "Завершено" %}:</strong> {{ object.end_date }}</p>
+            {% endif %}
+
+
+            <div class="mt-3 d-flex flex-wrap gap-2">
+                {% if object.status != "complete" and object.status != "close" %}
+                    {% if object.coordinator == user and not object.wishes %}
+                        <div>
+                            <button type="button" class="btn btn-success btn-sm rounded-pill px-3" data-bs-toggle="modal" data-bs-target="#approveModal">✅ {% translate "Утвердить обращение" %}</button>
+                        </div>
+                        <div>
+                            <button class="btn btn-danger btn-sm rounded-pill px-3" data-bs-toggle="modal" data-bs-target="#refuseModal">❎ {% translate "Отказать" %}</button>
+                        </div>
+                    {% endif %}
+
+                    {% if user.is_admin and object.status == "new" %}
+                        <form action="{% url 'main:task_at_work' object.pk %}" method="POST">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-primary btn-sm rounded-pill px-3">▶ {% translate "Взять в работу" %}</button>
+                        </form>
+                    {% endif %}
+
+                    {% if user == object.author %}
+                        <div>
+                        <button class="btn btn-danger btn-sm rounded-pill px-3" data-bs-toggle="modal" data-bs-target="#closeModal">🚫 {% translate "Закрыть обращение" %}</button>
+                        </div>
+                    {% endif %}
+                    {% if user.is_admin and user != object.author%}
+                         <form action="{% url 'main:task_close' object.pk %}" method="POST">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-warning btn-sm rounded-pill px-3">🚫 {% translate "Закрыть обращение" %}</button>
+                        </form>
+                    {% endif %}
+                        
+                {% endif %}
+
+                <div class="ms-auto d-flex gap-2">
+                    {% if object.status != "complete" and object.status != "close" %}
+                {% if user.is_staff or user == object.author or user == object.coordinator %}
+
+                    <div>
+                    <a class="btn theme-btn-outline-info btn-sm rounded-pill px-3 text-decoration-none"
+   href="{% url 'main:task_update' object.pk %}">
+   <i class="bi bi-pencil-square"></i> {% translate "Изменить" %}
+</a></div>
+                    {% endif %}
+                {% endif %}
+
+                    <div>
+                    <a class="btn theme-btn-outline-light btn-sm rounded-pill px-3 text-decoration-none"
+   href="{% url 'main:index' %}">
+   <i class="bi bi-arrow-left"></i> {% translate "Назад" %}
+</a></div>
+
+                </div>
+            </div>
+
+            <!-- Модальное окно утверждения -->
+            <div class="modal fade" id="approveModal" tabindex="-1" role="dialog" aria-labelledby="approveModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header bg-success">
+                            <h5 class="modal-title" id="approveModalLabel">{% translate "Утвердите обращение" %}</h5>
+                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{% url 'main:task_whishes' object.pk %}" method="POST">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label for="approval_comment">{% translate "Комментарий" %}:</label>
+                                    <textarea class="form-control" id="approval_comment" name="commentary" rows="3"></textarea>
+                                </div>
+                                <button type="submit" name="action" value="approve" class="btn btn-success">{% translate "Да, утвердить" %}</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Модальное окно отказа -->
+            <div class="modal fade" id="refuseModal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content rounded-3">
+                        <div class="modal-header bg-danger text-white">
+                            <h5 class="modal-title">{% translate "Причина отказа" %}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{% url 'main:task_refuse' object.pk %}" method="POST">
+                                {% csrf_token %}
+                                <textarea class="form-control rounded" name="commentary" rows="3"></textarea>
+                                <button type="submit" class="btn btn-danger mt-2 rounded-pill px-3">{% translate "Отправить" %}</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Модальное окно закрытия -->
+            <div class="modal fade" id="closeModal" tabindex="-1" role="dialog" aria-labelledby="closeModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header bg-danger">
+                            <h5 class="modal-title" id="approveModalLabel">{% translate "Закрыть обращение?" %}</h5>
+                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body text-center">
+                            <form action="{% url 'main:task_close' object.pk %}" method="POST">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-success btn-sm rounded-pill px-3">{% translate "Да, закрыть обращение" %}</button>
+                        </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Блок комментариев -->
+<div class="container mt-5">
+  <h5 class="text-center text-glow mb-4">
+    <span class="text-bg">{% translate "Комментарии" %}</span>
+  </h5>
+
+  <div class="card shadow-sm rounded-3">
+    <div class="card-body px-0 py-4">
+      <div id="comments-container" class="px-3">
+        {% for comment in comments %}
+        <div class="d-flex gap-3 py-3 border-bottom comment-block">
+          {% if comment.author.avatar %}
+          <img src="{{ comment.author.avatar.url }}" alt="Аватар" class="rounded-circle shadow-sm" width="48" height="48">
+          {% endif %}
+          <div class="flex-grow-1">
+            <div class="d-flex justify-content-between align-items-center">
+              <strong class="theme-label">{{ comment.author.get_full_name|default:comment.author.username }}</strong>
+              <small class="text-muted fst-italic">{{ comment.created_at }}</small>
+            </div>
+            <div class="mt-2 theme-label comment-text">
+              {{ comment.content | safe }}
+            </div>
+          </div>
+        </div>
+        {% empty %}
+        <p class="text-center theme-label py-3">{% translate "Комментариев пока нет" %}</p>
+        {% endfor %}
+      </div>
+
+      {% if object.status != "close" %}
+      <hr class="my-4">
+      <div class="px-3">
+        <h6 class="mb-3 theme-label">{% translate "Добавить комментарий" %}:</h6>
+        <form method="post">
+          {% csrf_token %}
+          {{ form.media }}
+          {{ form.as_p }}
+          <div class="d-flex justify-content-end">
+            <button class="btn btn-primary btn-sm rounded-pill px-4" type="submit">
+              {% translate "Отправить комментарий" %}
+            </button>
+          </div>
+
+          {% if form.errors %}
+          <ul class="errorlist mt-3">
+            {% for error in form.non_field_errors %}
+            <li class="text-danger">{{ error }}</li>
+            {% endfor %}
+            {% for field in form %}
+              {% for error in field.errors %}
+              <li class="text-danger">{{ error }}</li>
+              {% endfor %}
+            {% endfor %}
+          </ul>
+          {% endif %}
+        </form>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

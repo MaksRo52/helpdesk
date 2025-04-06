@@ -1,0 +1,78 @@
+html, body {
+  height: 100%;
+  font-family: 'Manrope', sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+.bg-video,
+.video-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  object-fit: cover;
+  z-index: -2;
+}
+
+.video-overlay { z-index: -1; background: var(--overlay-bg); }
+
+.task-list-wrapper {
+  padding: 20px; margin: 30px 0; border-radius: 10px;
+  box-shadow: 0 4px 30px rgba(0,0,0,0.4);
+}
+
+footer {
+  padding: 30px 0; margin-top: auto;
+}
+
+.menu-btn, .user-btn, .exit-btn, .hover-bg {
+  transition: 0.2s ease-in-out;
+}
+
+.menu-btn:hover, .user-btn:hover, .hover-bg:hover {
+  transform: scale(1.05);
+}
+
+.exit-btn:hover { background-color: red; }
+
+.pagination { padding: 4px 10px; border-radius: 8px; }
+
+.page-link, .page-item { border-radius: 6px; }
+
+.card, .modal-content, .card-header.bg-dark { border-radius: 6px; }
+
+.btn { border-radius: 6px; }
+
+.btn-close { filter: invert(1); }
+
+.modal-header, .modal-body, .modal-content { border-radius: 6px; }
+
+.profile-card {
+  border-radius: 12px;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+}
+
+.card img.rounded-circle {
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.new_task {
+  background: linear-gradient(135deg,#00e5ff,#007bff);
+  border-radius: 8px;
+}
+
+.glass-card { backdrop-filter: blur(10px); border-radius: 20px; }
+
+.dev-avatar { border: 3px solid #0dcaf0; }
+
+.pulse { animation: pulse 2s infinite; }
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 15px rgba(255,87,34,0.5); }
+  50% { box-shadow: 0 0 25px rgba(255,87,34,0.8); }
+  100% { box-shadow: 0 0 15px rgba(255,87,34,0.5); }
+}
+
+header.navbar { backdrop-filter: blur(6px); }
+

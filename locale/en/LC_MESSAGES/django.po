@@ -1,0 +1,508 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-03-25 13:21+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\main\models.py:33 .\main\templates\main\task_detail.html:53
+#: .\main\templates\main\task_form.html:95
+msgid "Описание"
+msgstr "Description"
+
+#: .\main\models.py:34
+msgid "Введите описание"
+msgstr "Enter the description"
+
+#: .\main\models.py:40
+msgid "Статус заявки"
+msgstr "The status of the application"
+
+#: .\main\models.py:46
+msgid "Дата завершения выполнения"
+msgstr "Date of completion of execution"
+
+#: .\main\models.py:55
+msgid "автор"
+msgstr "author"
+
+#: .\main\models.py:60
+msgid "Файлы"
+msgstr "Files"
+
+#: .\main\models.py:61 .\main\templates\main\task_detail.html:37
+#: .\main\templates\main\task_detail.html:162
+msgid "Комментарий"
+msgstr "Comment"
+
+#: .\main\models.py:64 .\main\templates\main\task_detail.html:64
+#: .\main\templates\main\task_form.html:111
+msgid "Исполнитель"
+msgstr "Executor"
+
+#: .\main\models.py:70 .\main\templates\main\task_detail.html:29
+msgid "Утверждено"
+msgstr "Approved"
+
+#: .\main\models.py:70 .\main\templates\main\task_detail.html:101
+msgid "Утвердить обращение"
+msgstr "Approve the appeal"
+
+#: .\main\models.py:75
+msgid ""
+"Введите номер AnyDesk для подключения. Загрузить AnyDesk можно внизу "
+"страницы."
+msgstr ""
+"Enter Anydesk number for connection. You can download Anydesk at the bottom "
+"of the page."
+
+#: .\main\models.py:81 .\main\templates\main\task_detail.html:26
+#: .\main\templates\main\task_form.html:74
+msgid "Согласующий"
+msgstr "Consonant"
+
+#: .\main\models.py:82
+msgid "Укажите согласующего для утверждения заявки (При необходимости)"
+msgstr "Indicate the approval for approval of the application (if necessary)"
+
+#: .\main\models.py:89
+msgid "Категория заявки"
+msgstr "The category of applications"
+
+#: .\main\models.py:95 .\main\templates\main\task_detail.html:75
+#: .\main\templates\main\task_form.html:128
+msgid "Наблюдатели"
+msgstr "Observers"
+
+#: .\main\models.py:97
+msgid ""
+"Укажите наблюдателей для заявки (При необходимости) Удерживайте “Control“)"
+msgstr "Indicate observers for the application (if necessary) hold “Control”)"
+
+#: .\main\templates\includes\inc_header.html:19
+msgid "Главная"
+msgstr "Home"
+
+#: .\main\templates\includes\inc_header.html:34
+#: .\users\templates\users\password_change.html:15
+#: .\users\templates\users\profile.html:31
+#: .\users\templates\users\update_profile.html:28
+msgid "Почта"
+msgstr "Post office"
+
+#: .\main\templates\includes\inc_header.html:49
+msgid "Создать задачу"
+msgstr "Create a task"
+
+#: .\main\templates\includes\inc_header.html:62
+msgid "Выйти"
+msgstr "Go out"
+
+#: .\main\templates\includes\inc_header.html:65
+#: .\users\templates\activate.html:25 .\users\templates\login.html:24
+msgid "Войти"
+msgstr "Enter"
+
+#: .\main\templates\main\index.html:44
+msgid "Загрузки"
+msgstr "Loading"
+
+#: .\main\templates\main\index.html:50
+msgid "Дополнительно"
+msgstr "Additionally"
+
+#: .\main\templates\main\index.html:52
+msgid "Телеграм бот"
+msgstr "Telegram Bot"
+
+#: .\main\templates\main\index.html:54
+msgid "В админку"
+msgstr "In the admin panel"
+
+#: .\main\templates\main\index.html:56
+#, fuzzy
+#| msgid "Автор / Исполнитель"
+msgid "О разработчике"
+msgstr "Author / Contractor"
+
+#: .\main\templates\main\index.html:60
+msgid "Язык"
+msgstr "Language"
+
+#: .\main\templates\main\index.html:86
+msgid "Спросить нейросеть"
+msgstr "Ask a neural network"
+
+#: .\main\templates\main\index.html:94
+msgid "Нейросеть"
+msgstr "Neural network"
+
+#: .\main\templates\main\index.html:102
+#: .\main\templates\main\task_detail.html:184
+msgid "Отправить"
+msgstr "Send"
+
+#: .\main\templates\main\index.html:107
+msgid "Очистить чат"
+msgstr "Clean the chat"
+
+#: .\main\templates\main\partials\task_list_dynamic.html:97
+msgid "Выполнить"
+msgstr "Perform"
+
+#: .\main\templates\main\partials\task_list_dynamic.html:125
+msgid "Задачи не найдены."
+msgstr "Tasks are not found."
+
+#: .\main\templates\main\partials\task_list_dynamic.html:131
+#: .\main\templates\main\task_detail.html:144
+#: .\users\templates\users\profile.html:41
+msgid "Назад"
+msgstr "Back"
+
+#: .\main\templates\main\partials\task_list_dynamic.html:147
+msgid "Вперед"
+msgstr "Forward"
+
+#: .\main\templates\main\task_detail.html:9
+msgid "Обращение"
+msgstr "Appeal"
+
+#: .\main\templates\main\task_detail.html:22
+#: .\main\templates\main\task_form.html:41
+#: .\main\templates\main\task_list.html:51
+msgid "Категория"
+msgstr "Category"
+
+#: .\main\templates\main\task_detail.html:31
+msgid "Не утверждено"
+msgstr "Not approved"
+
+#: .\main\templates\main\task_detail.html:44
+msgid "Владелец"
+msgstr "Owner"
+
+#: .\main\templates\main\task_detail.html:59
+msgid "Скриншот"
+msgstr "Screenshot"
+
+#: .\main\templates\main\task_detail.html:89
+msgid "Создано"
+msgstr "Created"
+
+#: .\main\templates\main\task_detail.html:91
+msgid "Принято в работу"
+msgstr "Adopted to work"
+
+#: .\main\templates\main\task_detail.html:94
+msgid "Завершено"
+msgstr "Completed"
+
+#: .\main\templates\main\task_detail.html:104
+msgid "Отказать"
+msgstr "Refuse"
+
+#: .\main\templates\main\task_detail.html:111
+msgid "Взять в работу"
+msgstr "Take to work"
+
+#: .\main\templates\main\task_detail.html:117
+#: .\main\templates\main\task_detail.html:123
+msgid "Закрыть обращение"
+msgstr "Close the appeal"
+
+#: .\main\templates\main\task_detail.html:136
+#: .\users\templates\users\password_change.html:35
+msgid "Изменить"
+msgstr "Change"
+
+#: .\main\templates\main\task_detail.html:155
+msgid "Утвердите обращение"
+msgstr "Approve the appeal"
+
+#: .\main\templates\main\task_detail.html:165
+msgid "Да, утвердить"
+msgstr "Yes, approve"
+
+#: .\main\templates\main\task_detail.html:177
+msgid "Причина отказа"
+msgstr "The reason for the refusal"
+
+#: .\main\templates\main\task_detail.html:195
+msgid "Закрыть обращение?"
+msgstr "Close the appeal?"
+
+#: .\main\templates\main\task_detail.html:201
+msgid "Да, закрыть обращение"
+msgstr "Yes, close the appeal"
+
+#: .\main\templates\main\task_detail.html:214
+msgid "Комментарии"
+msgstr "Comments"
+
+#: .\main\templates\main\task_detail.html:232
+msgid "Комментариев пока нет"
+msgstr "There are no comments yet"
+
+#: .\main\templates\main\task_detail.html:238
+msgid "Добавить комментарий"
+msgstr "Add a comment"
+
+#: .\main\templates\main\task_detail.html:243
+msgid "Отправить комментарий"
+msgstr "Send a comment"
+
+#: .\main\templates\main\task_form.html:6
+msgid "Создание заявки"
+msgstr "Creating an application"
+
+#: .\main\templates\main\task_form.html:26
+#: .\main\templates\main\task_list.html:87
+msgid "Тема"
+msgstr "Topic"
+
+#: .\main\templates\main\task_form.html:67
+msgid ""
+"Anydesk Необходимо указать, если заявка требует подключения по обращению."
+msgstr ""
+"Anydesk must be specified if the application requires an appeal connection."
+
+#: .\main\templates\main\task_form.html:69
+msgid "Введите номер AnyDesk."
+msgstr "Enter Anydesk number."
+
+#: .\main\templates\main\task_form.html:69
+msgid "Скачать"
+msgstr "Download"
+
+#: .\main\templates\main\task_form.html:87
+msgid ""
+"Согласующего необходимо указать, если обращение требует согласования с "
+"руководителем, например на предоставление доступа."
+msgstr ""
+"Consenter must be indicated if the appeal requires coordination with the "
+"head, for example, to provide access."
+
+#: .\main\templates\main\task_form.html:90
+#: .\main\templates\main\task_form.html:142
+msgid "Не обязательно к заполнению."
+msgstr "Not necessarily to fill out."
+
+#: .\main\templates\main\task_form.html:98
+msgid "Опишите проблему подробно."
+msgstr "Describe the problem in detail."
+
+#: .\main\templates\main\task_form.html:140
+msgid ""
+"Если необходимо, чтобы заявку увидели другие сотрудники, например, для "
+"отслеживания статуса заявки, выберите наблюдателей."
+msgstr ""
+"If necessary, for other employees to see the application, for example, to "
+"track the status of an application, select observers."
+
+#: .\main\templates\main\task_form.html:147
+#: .\users\templates\users\update_profile.html:95
+msgid "Сохранить"
+msgstr "Save"
+
+#: .\main\templates\main\task_form.html:147
+msgid "Создать"
+msgstr "Create"
+
+#: .\main\templates\main\task_form.html:149
+#: .\users\templates\users\password_change.html:37
+#: .\users\templates\users\recovery_password.html:28
+#: .\users\templates\users\update_profile.html:96
+msgid "Отмена"
+msgstr "Cancellation"
+
+#: .\main\templates\main\task_list.html:14
+msgid "Система решения IT- заявок"
+msgstr "System solutions IT- Application"
+
+#: .\main\templates\main\task_list.html:19
+msgid "Задачи"
+msgstr "Tasks"
+
+#: .\main\templates\main\task_list.html:23
+msgid "Фильтры"
+msgstr "Filters"
+
+#: .\main\templates\main\task_list.html:30 .\users\models.py:37
+#: .\users\templates\users\profile.html:32
+msgid "Город"
+msgstr "City"
+
+#: .\main\templates\main\task_list.html:32
+msgid "Все города"
+msgstr "All cities"
+
+#: .\main\templates\main\task_list.html:41
+#: .\main\templates\main\task_list.html:89
+msgid "Статус"
+msgstr "Status"
+
+#: .\main\templates\main\task_list.html:43
+msgid "Все статусы"
+msgstr "All statuses"
+
+#: .\main\templates\main\task_list.html:53
+msgid "Все категории"
+msgstr "All categories"
+
+#: .\main\templates\main\task_list.html:64
+msgid "Только мои задачи"
+msgstr "Only my tasks"
+
+#: .\main\templates\main\task_list.html:71
+msgid "Показать закрытые задачи"
+msgstr "Show closed tasks"
+
+#: .\main\templates\main\task_list.html:75
+msgid "Применить"
+msgstr "Apply"
+
+#: .\main\templates\main\task_list.html:76
+msgid "Сбросить"
+msgstr "Reset"
+
+#: .\main\templates\main\task_list.html:86
+msgid "Номер"
+msgstr "Number"
+
+#: .\main\templates\main\task_list.html:88
+msgid "Дата создания"
+msgstr "The date of creation"
+
+#: .\main\templates\main\task_list.html:90
+msgid "Автор / Исполнитель"
+msgstr "Author / Contractor"
+
+#: .\users\models.py:31 .\users\templates\activate.html:12
+#: .\users\templates\login.html:11
+#: .\users\templates\users\password_change.html:15
+#: .\users\templates\users\profile.html:30
+#: .\users\templates\users\update_profile.html:24
+msgid "Логин"
+msgstr "Login"
+
+#: .\users\models.py:38
+msgid "Выберите город"
+msgstr "Choose the city"
+
+#: .\users\models.py:50
+msgid "Номер телефона"
+msgstr "Phone number"
+
+#: .\users\models.py:51
+msgid "Введите номер мобильного телефона"
+msgstr "Enter your mobile phone number"
+
+#: .\users\models.py:58 .\users\templates\users\update_profile.html:77
+msgid "Фото профиля"
+msgstr "Photo profile"
+
+#: .\users\models.py:61
+msgid "Телеграм оповещения"
+msgstr "Telegram notification"
+
+#: .\users\templates\activate.html:8
+msgid "Учетная запись успешно активирована, повторите вход"
+msgstr "The account is successfully activated, repeat the entrance"
+
+#: .\users\templates\activate.html:16 .\users\templates\login.html:15
+msgid "Пароль"
+msgstr "Password"
+
+#: .\users\templates\activate.html:18 .\users\templates\login.html:17
+#, fuzzy
+#| msgid "Изменить пароль"
+msgid "Забыли пароль"
+msgstr "Change password"
+
+#: .\users\templates\activate.html:27 .\users\templates\login.html:26
+#: .\users\templates\users\user_form.html:35
+msgid "Зарегистрироваться"
+msgstr "Register"
+
+#: .\users\templates\login.html:8
+msgid "Вход"
+msgstr "Entrance"
+
+#: .\users\templates\users\password_change.html:7
+#, fuzzy
+#| msgid "Изменение профиля"
+msgid "Изменение пароля"
+msgstr "Changing the profile"
+
+#: .\users\templates\users\profile.html:10
+msgid "Сведения о пользователе"
+msgstr "User information"
+
+#: .\users\templates\users\profile.html:26
+#, fuzzy
+#| msgid "Автор / Исполнитель"
+msgid "Автор и разработчик"
+msgstr "Author / Contractor"
+
+#: .\users\templates\users\profile.html:35
+#: .\users\templates\users\profile.html:37
+msgid "Телефон"
+msgstr "Telephone"
+
+#: .\users\templates\users\profile.html:37
+msgid "скрыт"
+msgstr "Hidden"
+
+#: .\users\templates\users\profile.html:45
+msgid "Изменить данные"
+msgstr "Change data"
+
+#: .\users\templates\users\profile.html:46
+msgid "Изменить пароль"
+msgstr "Change password"
+
+#: .\users\templates\users\recovery_password.html:7
+#, fuzzy
+#| msgid "Изменение профиля"
+msgid "Восстановление пароля"
+msgstr "Changing the profile"
+
+#: .\users\templates\users\recovery_password.html:26
+#, fuzzy
+#| msgid "Отправить"
+msgid "Отправить письмо"
+msgstr "Send"
+
+#: .\users\templates\users\update_profile.html:8
+msgid "Изменение профиля"
+msgstr "Changing the profile"
+
+#: .\users\templates\users\update_profile.html:17
+msgid "Данные профиля"
+msgstr "Profile data"
+
+#: .\users\templates\users\update_profile.html:70
+msgid "Включить уведомления в Telegram"
+msgstr "Enable notifications in Telegram"
+
+#: .\users\templates\users\user_form.html:7
+msgid "Регистрация в системе"
+msgstr "Registration in the system"
+
+#: .\users\templates\users\user_form.html:12
+msgid "После регистрации необходимо зайти на почту для активации аккаунта"
+msgstr "After registration, you must go to the mail to activate the account"

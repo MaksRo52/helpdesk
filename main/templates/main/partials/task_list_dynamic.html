@@ -1,0 +1,120 @@
+{% load static i18n %}
+{% for task in object_list %}
+<a class="btn-task task {% if task.status == 'close' %}task-closed{% endif %}" data-id="{{ task.pk }}"
+   href="{% url 'main:task_detail' task.pk %}">
+
+  <div class="row text-center align-items-center btn-task-text">
+
+    <!-- Категория и ID -->
+    <div class="col-12 col-sm-1 btn-task-center">
+      {% if task.category == "1c" %}
+      <img src="{% static 'img/category_icon/1c.png' %}" width="20" height="20">
+      {% elif task.category == "directum" %}
+      <img src="{% static 'img/category_icon/directum.png' %}" width="20" height="20">
+      {% elif task.category == "access" %}
+      <img src="{% static 'img/category_icon/access.png' %}" width="20" height="20">
+      {% elif task.category == "equipment" %}
+      <img src="{% static 'img/category_icon/equipment.png' %}" width="20" height="20">
+      {% elif task.category == "software" %}
+      <img src="{% static 'img/category_icon/folder.png' %}" width="20" height="20">
+      {% elif task.category == "mail" %}
+      <img src="{% static 'img/category_icon/mail.png' %}" width="20" height="20">
+      {% elif task.category == "network" %}
+      <img src="{% static 'img/category_icon/network.png' %}" width="20" height="20">
+      {% endif %}
+      &nbsp;<strong>#{{ task.pk }}</strong>
+    </div>
+
+    <!-- Заголовок задачи -->
+    <div class="col-12 col-sm-4 btn-task-center text-start">
+      {{ task.title }}
+    </div>
+
+    <!-- Дата создания -->
+    <div class="col-12 col-sm-2 btn-task-center">
+      {{ task.created_at }}
+    </div>
+
+    <!-- Статус задачи и действия -->
+    <div class="col-12 col-sm-2 d-flex justify-content-center flex-wrap gap-1 align-items-center">
+  {% if task.status == 'complete' %}
+  <form class="btn-task-center">
+    <button class="btn btn-secondary text-white" disabled>{{ task.get_status_display }}</button>
+  </form>
+  {% elif task.status == 'work' %}
+  <form class="btn-task-center">
+    <button class="btn btn-primary text-white" disabled>{{ task.get_status_display }}</button>
+  </form>
+  {% elif task.status == 'new' %}
+  <form class="btn-task-center">
+    <button class="btn btn-success text-white" disabled>{{ task.get_status_display }}</button>
+  </form>
+  {% elif task.status == 'close' %}
+  <form class="btn-task-center">
+    <button class="btn btn-dark text-white" disabled>{{ task.get_status_display }}</button>
+  </form>
+  {% endif %}
+
+  {% if task.status == "new" and perms.main.can_edit_status_task %}
+  <form action="{% url 'main:task_at_work' task.pk %}" method="POST" class="task-action-form btn-task-center" data-task-id="{{ task.pk }}">
+  {% csrf_token %}
+  <button type="submit" class="btn btn-warning text-white">В работу</button>
+</form>
+  {% elif task.status == "new" and request.user.is_admin %}
+  <form action="{% url 'main:task_at_work' task.pk %}" method="POST" class="btn-task-center">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-warning text-white">В работу</button>
+  </form>
+  {% endif %}
+
+  {% if task.status == "work" and request.user.is_admin %}
+  <form action="{% url 'main:task_close' task.pk %}" method="POST" class="btn-task-center">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-success text-white">{% translate "Выполнить" %}</button>
+  </form>
+  {% endif %}
+</div>
+
+   <!-- Автор и исполнитель -->
+<div class="col-12 col-sm-3 btn-task-center">
+  <form action="{% url 'users:profile' task.author.pk %}" class="btn-task-center" method="get">
+    <button type="submit" class="btn btn-link user-link author-link p-0 m-0">{{ task.author }}</button>
+  </form>
+
+  {% if task.executor %}
+  <div class="divider">/</div>
+  <form action="{% url 'users:profile' task.executor.pk %}" class="btn-task-center" method="get">
+    <button type="submit" class="btn btn-link executor-link p-0 m-0">
+  {{ task.executor.username }}
+</button>
+  </form>
+  {% endif %}
+</div>
+  </div>
+</a>
+{% empty %}
+<p class="text-center theme-label py-5">{% translate "Задачи не найдены." %}</p>
+{% endfor %} 
+<!--Пагинация-->
+<ul class="pagination" style="justify-content: center">
+    {% if page_obj.has_previous %}
+    <li class="page-item">
+        <a href="?page={{ page_obj.previous_page_number }}& {{request.GET.urlencode}}" class="page-link">{% translate "Назад" %}</a>
+    </li>
+    <li class="page-item">
+        <a href="?page=1& {{request.GET.urlencode}}" class="page-link">1</a></li>
+    {% endif %}
+    <li class="page-item active">
+        <span class="page-link">
+{{ page_obj.number }}
+            <span class="sr-only"></span>
+        </span>
+    </li>
+    {% if page_obj.has_next %}
+    <li class="page-item"><a class="page-link"
+                             href="?page={{ page_obj.next_page_number }}& {{request.GET.urlencode}}">{{page_obj.next_page_number}}</a>
+    </li>
+    <li class="page-item"><a href="?page={{ page_obj.next_page_number }}& {{request.GET.urlencode}}"
+                             class="page-link">{% translate "Вперед" %}</a></li>
+    {% endif %}
+</ul>

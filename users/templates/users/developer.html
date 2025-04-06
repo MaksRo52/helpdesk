@@ -1,0 +1,62 @@
+{% extends 'main/index.html' %}
+{% load static i18n %}
+{% block content %}
+<div class="container mt-5">
+  <div class="text-center mb-4">
+      <h2 class="text-glow fw-bold"><span class="text-bg">{% translate "О разработчике" %}</span></h2>
+  </div>
+
+  <div class="d-flex justify-content-center align-items-center">
+    <div class="col-md-10 col-lg-8">
+      <div class="dev-card p-4 pulse rounded-4 shadow-lg"
+     style="background: rgba(0, 0, 0, 0.75); backdrop-filter: blur(8px); border-radius: 16px; box-shadow: 0 8px 20px rgba(0,0,0,0.5); color: white;">
+
+        <div class="text-center mb-4">
+          <img src="{% static 'img/dev_avatar.jpg' %}" alt="Dev Avatar" class="rounded-circle shadow" style="width: 130px; height: 130px; object-fit: cover;">
+        </div>
+
+        <div class="text-center mb-3">
+          <h3 class="fw-bold text-white mb-1">Максим Романцов</h3>
+          <p class="dev-note text-info mb-2">{% translate "Автор и разработчик системы HelpDesk" %}</p>
+        </div>
+
+        <hr class="border-light mb-4">
+
+        <h5 class="text-uppercase text-light mb-3">{% translate "Технологии" %}:</h5>
+        <div class="row text-white dev-tech-list">
+          <div class="col-sm-6">
+            <ul class="list-unstyled">
+              <li>Python</li>
+              <li>Django Framework</li>
+              <li>Bootstrap</li>
+              <li>jQuery</li>
+              <li>PostgreSQL</li>
+            </ul>
+          </div>
+          <div class="col-sm-6">
+            <ul class="list-unstyled">
+              <li>Docker</li>
+              <li>GitLab CI / Runner</li>
+              <li>Celery + Beat</li>
+              <li>AI-интеграции</li>
+              <li>Telegram-бот</li>
+            </ul>
+          </div>
+        </div>
+
+        <hr class="border-light my-4">
+
+        <div class="text-start text-light px-2">
+          <p><strong>📬 {% translate "Контакт" %}:</strong> <a href="mailto:romancov_dzr@mail.ru" class="link-light">romancov_dzr@mail.ru</a></p>
+          <p><strong>📍 {% translate "Город" %}:</strong> Нижний Новгород</p>
+        </div>
+
+        <div class="text-center mt-4">
+          <a href="{% url 'main:index' %}" class="btn btn-outline-info px-4 py-2 text-decoration-none rounded-pill">⬅ {% translate "На главную" %}</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,89 @@
+{% load static i18n %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>404 — {% translate "Страница не найдена" %}</title>
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+  <link rel="stylesheet" href="{% static 'css/theme.css' %}">
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .error-container {
+      text-align: center;
+      animation: fadeIn 1s ease-in-out;
+      max-width: 600px;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    .error-logo img {
+      height: 80px;
+      margin-bottom: 1rem;
+      animation: float 2.5s ease-in-out infinite;
+    }
+
+    .error-title {
+      font-size: 3rem;
+      font-weight: bold;
+    }
+
+    .error-subtitle {
+      font-size: 1.25rem;
+      margin-top: 0.5rem;
+    }
+
+    .error-text {
+      margin-top: 1rem;
+      font-size: 0.95rem;
+      opacity: 0.7;
+    }
+
+    .error-link {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 0.6rem 1.5rem;
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(-20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
+  </style>
+</head>
+<body class="light-theme dark-theme">
+  <div class="error-container">
+    <div class="error-logo">
+      <a href="/">
+        <img src="{% static 'img/Logo.svg' %}" alt="Logo">
+      </a>
+    </div>
+    <div class="error-title">404</div>
+    <div class="error-subtitle">{% translate "Страница не найдена" %}</div>
+    <div class="error-text">
+      {% translate "Похоже, вы перешли по неправильному адресу или страница была удалена." %}<br>
+      {% translate "Проверьте URL или вернитесь на главную." %}
+    </div>
+    <a href="{% url 'main:index' %}" class="error-link">⬅ {% translate "На главную" %}</a>
+  </div>
+</body>
+</html>

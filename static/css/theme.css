@@ -1,0 +1,804 @@
+:root {
+  --overlay-bg: rgba(0, 0, 0, 0.6);
+  --content-bg: rgba(0, 0, 0, 0.6);
+  --text-color: white;
+  --link-color: #0d6efd;
+  --btn-bg: rgba(255, 255, 255, 0.1);
+  --input-bg: rgba(255, 255, 255, 0.1);
+  --border-color: rgba(255,255,255,0.2);
+  --btn-hover-bg: rgba(255,255,255,0.2);
+}
+
+.light-theme {
+  --overlay-bg: rgba(255, 255, 255, 0);
+  --content-bg: rgba(255, 255, 255, 0.9);
+  --text-color: #212529;
+  --link-color: #0d6efd;
+  --btn-bg: rgba(0, 0, 0, 0.05);
+  --input-bg: rgba(0, 0, 0, 0.05);
+  --border-color: rgba(0,0,0,0.1);
+  --btn-hover-bg: rgba(0,0,0,0.1);
+}
+
+body,
+.card,
+footer,
+header.navbar,
+.task-list-wrapper,
+.list-group-item,
+.form-control,
+.comment,
+.modal-content,
+.card-body,
+.select2-container--default .select2-selection--single,
+.select2-container--default .select2-selection--multiple,
+.ck-editor__editable {
+  color: var(--text-color);
+  background-color: var(--content-bg);
+  border-color: var(--border-color);
+}
+
+a,
+footer a,
+.card-body a,
+.page-link {
+  color: var(--link-color);
+}
+
+.btn-outline-light {
+  color: var(--text-color);
+  border-color: var(--border-color);
+}
+
+.btn-outline-light:hover,
+.card .btn-secondary:hover,
+.hover-bg:hover,
+.page-link:hover {
+  background-color: var(--btn-hover-bg);
+}
+
+/* Кнопки outline для темы */
+.theme-btn-outline {
+  color: var(--text-color) !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+.theme-btn-outline:hover {
+  background-color: var(--btn-hover-bg) !important;
+  color: var(--text-color) !important;
+}
+
+/* Переключатель темы */
+.theme-toggle-switch {
+  width: 50px;
+  height: 26px;
+  background-color: var(--btn-bg) !important;
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 0 6px rgba(0,0,0,0.2);
+}
+
+.theme-toggle-switch:checked {
+  background-color: var(--link-color) !important;
+  border-color: var(--link-color);
+}
+
+.theme-toggle-switch:focus {
+  box-shadow: 0 0 10px var(--link-color);
+}
+
+.theme-toggle-label {
+  cursor: pointer;
+  font-size: 1.2rem;
+  user-select: none;
+}
+
+/* Меняем иконку переключателя в зависимости от темы */
+.theme-toggle-label::before {
+  content: "🌙"; /* Луна по умолчанию (тёмная тема) */
+  transition: content 0.3s ease;
+}
+
+.light-theme .theme-toggle-label::before {
+  content: "☀️"; /* Солнце для светлой темы */
+}
+
+/* Dropdown menu */
+.theme-dropdown {
+  background-color: var(--content-bg);
+  border: 1px solid var(--border-color);
+  backdrop-filter: none;
+  opacity: 1 !important;
+
+}
+
+.theme-dropdown .dropdown-item {
+  color: var(--text-color) !important;
+}
+
+.theme-dropdown .dropdown-item:hover {
+  background-color: var(--btn-hover-bg) !important;
+  color: var(--text-color) !important;
+}
+
+/* Иконка меню (мобильная кнопка) */
+.navbar-toggler-icon {
+  filter: var(--toggler-filter, invert(1));
+}
+
+.light-theme .navbar-toggler-icon {
+  --toggler-filter: invert(0);
+}
+
+.nav-link.menu-btn {
+  color: var(--text-color) !important;
+}
+
+.nav-link.menu-btn:hover {
+  color: var(--link-color) !important;
+  text-decoration: none;
+}
+
+/* Стилизуем dropdown-toggle отдельно */
+.nav-link.dropdown-toggle.menu-btn::after {
+  filter: brightness(0) invert(1);
+}
+
+.light-theme .nav-link.dropdown-toggle.menu-btn::after {
+  filter: brightness(0) invert(0);
+}
+
+/* Кнопка "Создать задачу" */
+.new_task {
+  color: #fff !important; /* Всегда белый текст */
+  background: linear-gradient(135deg, #00e5ff, #007bff);
+  border: none;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 8px;
+  box-shadow: 0 0 12px rgba(0, 229, 255, 0.4);
+  transition: 0.3s ease;
+}
+
+.new_task:hover {
+  background: linear-gradient(135deg, #00b8d9, #0056b3);
+  box-shadow: 0 0 16px rgba(0, 229, 255, 0.6);
+  transform: translateY(-1px);
+}
+
+/* Кнопка профиля пользователя (outline-стиль) */
+.user-btn {
+  color: var(--text-color) !important;
+  border: 1px solid var(--border-color) !important;
+  background-color: transparent !important;
+  transition: all 0.2s ease-in-out;
+}
+
+.user-btn:hover {
+  background-color: var(--btn-hover-bg) !important;
+  transform: scale(1.05);
+}
+
+/* Аватар внутри кнопки пользователя */
+.user-btn img.rounded-circle {
+  border: 1px solid var(--border-color);
+}
+
+/* Кнопка "Выйти" (опасное действие) */
+.exit-btn {
+  color: #ff4c4c !important;
+  border: 1px solid #ff4c4c !important;
+  background-color: transparent;
+  transition: all 0.2s ease-in-out;
+}
+
+.exit-btn:hover {
+  background-color: #ff4c4c !important;
+  color: #fff !important;
+  transform: scale(1.05);
+}
+
+/* Кнопка "Войти" (желтая кнопка для неавторизованных) */
+.btn-warning {
+  background-color: #ffc107 !important;
+  border-color: #ffc107 !important;
+  color: #212529 !important;
+  transition: 0.2s ease;
+}
+
+.btn-warning:hover {
+  background-color: #e0a800 !important;
+  border-color: #e0a800 !important;
+  color: #212529 !important;
+}
+
+/* Форма select языка в футере */
+.theme-select {
+  background-color: var(--input-bg) !important;
+  color: var(--text-color) !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+.theme-select option {
+  background-color: var(--content-bg);
+  color: var(--text-color);
+}
+
+/* Заголовки и подзаголовки */
+.text-glow {
+  color: var(--text-color);
+  text-shadow: 0 0 10px rgba(0,0,0,0.6);
+}
+
+.theme-title,
+.theme-subtitle {
+  color: var(--text-color);
+  text-shadow: 0 0 6px rgba(0,0,0,0.5);
+}
+
+/* Кнопки primary и secondary под тему */
+.theme-btn-primary {
+  background-color: var(--link-color);
+  color: #fff !important;
+}
+
+.theme-btn-primary:hover {
+  opacity: 0.85;
+}
+
+.theme-btn-secondary {
+  background-color: var(--btn-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-color) !important;
+}
+
+.theme-btn-secondary:hover {
+  background-color: var(--btn-hover-bg);
+}
+
+/* Текст label */
+.theme-label {
+  color: var(--text-color);
+}
+
+/* Селекторы и чекбоксы */
+.theme-select,
+.theme-check .form-check-input {
+  background-color: var(--input-bg) !important;
+  color: var(--text-color) !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+.theme-select option {
+  background-color: var(--content-bg);
+  color: var(--text-color);
+}
+
+.theme-check .form-check-label {
+  color: var(--text-color);
+}
+
+/* Оформление таблицы задач */
+.theme-table-header {
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.task-list-wrapper.theme-card {
+  background-color: var(--content-bg);
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+  backdrop-filter: blur(5px);
+}
+
+.text-bg {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 10px;
+}
+
+/* Светлая тема — добавляем подложку */
+.light-theme .text-bg {
+  background-color: rgba(255, 255, 255, 0.85);
+  color: white;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 0 12px rgba(0,0,0,0.1);
+  --text-color: white;
+}
+
+/* Тёмная тема — убираем фон, оставляем просто светящийся текст */
+:not(.light-theme) .text-bg {
+  background: none;
+  color: var(--text-color);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
+}
+/* Общая панель фильтров */
+.filter-dropdown-menu {
+  background-color: rgba(30, 30, 30, 0.95) !important;  /* Тёмная тема фон */
+  color: #fff !important;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+}
+
+/* Светлая тема: более светлая панель */
+.light-theme .filter-dropdown-menu {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  color: #212529 !important;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+
+/* Форма внутри фильтров */
+.filter-dropdown-menu .form-label,
+.filter-dropdown-menu .form-check-label {
+  color: inherit !important;
+}
+
+/* Селекты и поля */
+.filter-dropdown-menu .form-select,
+.filter-dropdown-menu .form-control {
+  background-color: var(--input-bg) !important;
+  color: var(--text-color) !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+/* Кнопки */
+.filter-dropdown-menu .btn-primary {
+  background-color: var(--link-color) !important;
+  color: white !important;
+  border: none !important;
+}
+
+.filter-dropdown-menu .btn-primary:hover {
+  opacity: 0.85;
+}
+
+.filter-dropdown-menu .btn-secondary {
+  background-color: var(--btn-bg) !important;
+  color: var(--text-color) !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+.filter-dropdown-menu .btn-secondary:hover {
+  background-color: var(--btn-hover-bg) !important;
+}
+
+/* === PRIMARY (Применить) === */
+.theme-btn-primary {
+  background-color: var(--link-color) !important;
+  color: #fff !important;
+  border: none;
+  font-weight: 600;
+  padding: 6px 16px;
+  border-radius: 6px;
+  box-shadow: 0 0 8px rgba(13, 202, 240, 0.3);
+  transition: all 0.2s ease;
+}
+
+.theme-btn-primary:hover {
+  background-color: #0a58ca; /* fallback */
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+/* === SECONDARY (Сбросить) === */
+.theme-btn-secondary {
+  background-color: var(--btn-bg) !important;
+}
+
+.theme-btn-secondary:hover {
+  background-color: var(--btn-hover-bg) !important;
+  transform: translateY(-1px);
+}
+
+/* === Чекбоксы под тему === */
+.theme-check .form-check-input {
+  background-color: var(--input-bg) !important;
+  border: 1px solid var(--border-color) !important;
+  color: var(--text-color);
+  box-shadow: none;
+}
+
+/* Светлая тема — чёткая рамка и светлый фон */
+.light-theme .theme-check .form-check-input {
+  background-color: #fff !important;
+  border-color: #999 !important;
+}
+
+/* При отметке */
+.theme-check .form-check-input:checked {
+  background-color: var(--link-color) !important;
+  border-color: var(--link-color) !important;
+}
+
+/* Светлая тема — голубой чекбокс */
+.light-theme .theme-check .form-check-input:checked {
+  background-color: #0d6efd !important;
+  border-color: #0d6efd !important;
+}
+
+/* Общая кнопка-задача */
+.btn-task {
+  display: block;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: var(--text-color);
+  transition: background-color 0.2s ease;
+  border-radius: 8px;
+}
+
+/* Для .light-theme — убираем затемнение и оставляем стандарт */
+.light-theme .btn-task {
+  background-color: rgba(255, 255, 255, 0.6); /* или transparent */
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: #212529;
+}
+
+/* Закрытая задача */
+.btn-task.task-closed {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.light-theme .btn-task.task-closed {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+/* При наведении */
+.btn-task:hover {
+  background: linear-gradient(90deg, rgba(158,234,249,0.25), rgba(89,162,255,0.25));
+  box-shadow: 0 0 10px rgba(158,234,249,0.2);
+}
+
+.light-theme .btn-task:hover {
+  background: rgba(0, 0, 0, 0.04);
+  box-shadow: none;
+}
+
+/* Активное состояние */
+.btn-task:active {
+  background: rgba(10, 88, 202, 0.7);
+  color: white;
+  box-shadow: inset 0 0 5px rgba(255,255,255,0.2);
+}
+
+.light-theme .btn-task:active {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: #212529;
+  box-shadow: none;
+}
+
+/* Гарантируем цвет текста */
+.btn-task-text,
+.btn-task * {
+  color: var(--text-color) !important;
+}
+
+.light-theme .btn-task * {
+  color: #212529 !important;
+}
+
+/* Исполнитель в обеих темах */
+.btn-task .text-info {
+  color: #0dcaf0 !important;
+}
+
+/* Общий стиль для пагинации */
+.pagination {
+  background: var(--content-bg);
+  border-radius: 10px;
+  padding: 6px 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Кнопки страниц */
+.page-link {
+  background-color: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  margin: 0 4px;
+  transition: all 0.2s ease;
+  border-radius: 6px;
+  padding: 6px 12px;
+}
+
+/* Наведение */
+.page-link:hover {
+  background-color: var(--btn-hover-bg);
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+/* Активная страница */
+.page-item.active .page-link {
+  background-color: var(--link-color);
+  color: #fff;
+  font-weight: bold;
+  border-color: var(--link-color);
+  box-shadow: 0 0 8px rgba(13, 202, 240, 0.4);
+}
+
+/* Неактивная (disabled) */
+.page-item.disabled .page-link {
+  color: #999;
+  pointer-events: none;
+  background-color: transparent;
+  border-color: var(--border-color);
+}
+
+.btn-task-center .btn {
+  color: white !important;
+}
+
+/* Общие стили */
+.user-link {
+  font-weight: 500;
+  transition: color 0.2s ease, text-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.user-link:hover {
+  text-shadow: 0 0 6px rgba(13, 202, 240, 0.5);
+}
+
+/* Автор — обычный цвет */
+.author-link {
+  color: white;
+}
+.light-theme .author-link {
+   color: #212529 !important;
+}
+
+/* Исполнитель — акцентный */
+.executor-link {
+  color: #0dcaf0 !important; /* Яркий голубой для темной темы */
+}
+
+.light-theme .executor-link {
+  color: #0d6efd !important; /* Синий акцент для светлой */
+}
+
+/* Доп. эффект при наведении */
+.executor-link:hover {
+  text-decoration: underline;
+}
+
+.theme-btn-outline-info {
+  color: var(--link-color) !important;
+  border: 1px solid var(--link-color) !important;
+  background-color: transparent;
+  transition: 0.2s ease;
+}
+
+.theme-btn-outline-info:hover {
+  background-color: var(--link-color) !important;
+  color: white !important;
+}
+
+.theme-btn-outline-light {
+  color: var(--text-color) !important;
+  border: 1px solid var(--border-color) !important;
+  background-color: transparent;
+  transition: 0.2s ease;
+}
+
+.theme-btn-outline-light:hover {
+  background-color: var(--btn-hover-bg) !important;
+  color: var(--text-color) !important;
+}
+
+.ck-editor__editable {
+  background-color: var(--input-bg) !important;
+  color: var(--text-color) !important;
+}
+
+/* === Общий стиль Select2 === */
+.select2-container--default .select2-selection--single,
+.select2-container--default .select2-selection--multiple {
+  background-color: var(--input-bg) !important;
+  border: 1px solid var(--border-color) !important;
+  color: var(--text-color) !important;
+  border-radius: 6px !important;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* === Анимация при фокусе === */
+.select2-container--default.select2-container--focus .select2-selection--single,
+.select2-container--default.select2-container--focus .select2-selection--multiple {
+  border-color: var(--link-color) !important;
+  box-shadow: 0 0 8px var(--link-color-alpha, rgba(13, 202, 240, 0.4));
+}
+
+/* === Выпадающее меню === */
+.select2-container--default .select2-results__option {
+  background-color: var(--content-bg) !important;
+  color: var(--text-color) !important;
+  transition: background 0.2s ease;
+}
+
+.select2-container--default .select2-results__option--highlighted {
+  background-color: var(--link-color) !important;
+  color: #000 !important;
+}
+
+/* === Текст ввода в multiple === */
+.select2-container--default .select2-search--inline .select2-search__field {
+  background: transparent !important;
+  color: var(--text-color) !important;
+  caret-color: var(--link-color);
+}
+
+/* === Выбранные теги в multiple === */
+.select2-container--default .select2-selection__choice {
+  background-color: var(--link-color) !important;
+  color: #000 !important;
+  border: none;
+  border-radius: 4px;
+  padding: 2px 6px;
+  margin: 2px 4px;
+  font-size: 0.875rem;
+  transition: background 0.2s ease;
+}
+
+.select2-container--default .select2-selection__choice__remove {
+  color: rgba(0, 0, 0, 0.6) !important;
+  margin-left: 4px;
+}
+
+.select2-container--default .select2-selection__choice__remove:hover {
+  color: red !important;
+}
+
+/* === Рендер текста в одиночном select2 === */
+.select2-container--default .select2-selection__rendered {
+  color: var(--text-color) !important;
+}
+
+.form-text,
+.text-muted,
+span.text-muted,
+.form-text.text-muted,
+.form-text span {
+  color: var(--text-color) !important;
+  opacity: 0.8;
+  font-style: italic;
+  font-size: 0.875rem;
+  padding-top: 4px;
+}
+
+/* Карточка пользователя */
+.user-card {
+  background-color: var(--content-bg);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.15);
+  transition: all 0.3s ease;
+}
+
+/* Надпись "Автор и разработчик" */
+.dev-note {
+  color: var(--link-color);
+  text-shadow: 0 0 6px rgba(0, 123, 255, 0.3);
+}
+
+/* Кнопки на странице пользователя */
+.user-card .btn {
+  transition: 0.2s ease-in-out;
+}
+
+.user-card .btn:hover {
+  transform: scale(1.03);
+  opacity: 0.9;
+}
+
+/* Кнопка "Назад" */
+.user-card .btn-secondary {
+  background-color: var(--btn-bg);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+}
+
+.user-card .btn-secondary:hover {
+  background-color: var(--btn-hover-bg);
+}
+
+/* Кнопка "Изменить данные" */
+.user-card .btn-primary {
+  background-color: #0d6efd;
+  color: #fff !important;
+  border: none;
+}
+
+.user-card .btn-primary:hover {
+  background-color: #0b5ed7;
+}
+
+/* Кнопка "Изменить пароль" */
+.user-card .btn-warning {
+  background-color: #ffc107;
+  color: #212529 !important;
+  border: none;
+}
+
+.user-card .btn-warning:hover {
+  background-color: #e0a800;
+}
+
+/* Стиль для текста */
+.user-card p,
+.user-card strong {
+  color: var(--text-color);
+}
+
+.btn-task-center form {
+  display: inline-block;
+  margin: 0 2px;
+}
+
+/* Цвет ссылок по теме */
+.theme-link {
+  color: var(--link-color);
+  text-decoration: none;
+}
+.theme-link:hover {
+  text-decoration: underline;
+}
+
+.light-theme .theme-link {
+  --link-color: #0d6efd; /* Bootstrap-синий */
+}
+
+.dark-theme .theme-link {
+  --link-color: #93c8ff; /* Светло-синий */
+}
+.theme-comment-block {
+  background-color: var(--comment-bg);
+  border: 1px solid var(--comment-border);
+}
+
+.comment-date {
+  color: var(--comment-muted);
+}
+
+/* Цвета для тем */
+.light-theme {
+  --comment-bg: #f8f9fa;
+  --comment-border: #dee2e6;
+  --comment-muted: #6c757d;
+}
+
+.dark-theme {
+  --comment-bg: rgba(255, 255, 255, 0.05);
+  --comment-border: rgba(255, 255, 255, 0.1);
+  --comment-muted: #adb5bd;
+}
+
+.theme-comment-block {
+  background-color: var(--comment-bg);
+  border: 1px solid var(--comment-border);
+}
+
+.comment-date {
+  color: var(--comment-muted);
+}
+
+/* Цвета для тем */
+.light-theme {
+  --comment-bg: #f8f9fa;
+  --comment-border: #dee2e6;
+  --comment-muted: #6c757d;
+}
+
+.dark-theme {
+  --comment-bg: rgba(255, 255, 255, 0.05);
+  --comment-border: rgba(255, 255, 255, 0.1);
+  --comment-muted: #adb5bd;
+}
+
+.comment-block:last-child {
+  border-bottom: none !important;
+}

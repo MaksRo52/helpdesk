@@ -1,0 +1,120 @@
+{% load static i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HelpDesk</title>
+  <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" />
+
+  <!-- Подключение CSS -->
+  <link href="{% static 'css/theme.css' %}" rel="stylesheet">
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css/main.css' %}" rel="stylesheet">
+  <link href="{% static 'css/form_list.css' %}" rel="stylesheet">
+  <link href="{% static 'css/chat_ai.css' %}" rel="stylesheet">
+  <link href="{% static 'css/fonts.css' %}" rel="stylesheet">
+
+  <!-- jQuery -->
+  <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
+
+  <!-- Хедер -->
+  {% include 'includes/inc_header.html' %}
+</head>
+
+<body class="video-bg">
+  <!-- Видео на фоне -->
+  <video autoplay muted loop playsinline class="bg-video">
+    <source src="{% static 'video/background.mp4' %}" type="video/mp4">
+    Ваш браузер не поддерживает видео.
+  </video>
+  <div class="video-overlay"></div>
+
+  <!-- Основной контент -->
+    {% block content %}
+    <!-- Содержимое блоков страниц -->
+    {% endblock %}
+
+  <!-- Подвал страницы -->
+  <footer class="theme-footer pt-4 pt-md-5 border-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-6 col-md">
+          <h5>{% translate "Загрузки" %}</h5>
+          <ul class="list-unstyled">
+            <li><a href="{% static 'files/AnyDesk.zip' %}" download>AnyDesk</a></li>
+          </ul>
+        </div>
+
+        <div class="col-6 col-md">
+          <h5>{% translate "Дополнительно" %}</h5>
+          <ul class="list-unstyled">
+            {% if request.user.is_superuser or request.user.is_staff %}
+              <li><a href="/admin/">{% translate "В админку" %}</a></li>
+            {% endif %}
+            <li><a href="{% url 'users:developer' %}">{% translate "О разработчике" %}</a></li>
+          </ul>
+        </div>
+      
+      <div class="col-6 col-md">
+        <h5>{% translate "Язык" %}</h5>
+            <form action="{% url 'set_language' %}" method="post">
+              {% csrf_token %}
+        <select name="language" onchange="this.form.submit()" class="form-select form-select-sm">
+            {% if request.LANGUAGE_CODE|lower == 'ru' or LANGUAGE_CODE|lower == 'ru-ru' %}
+                <option value="ru" selected>Русский</option>
+            {% else %}
+                <option value="ru">Русский</option>
+            {% endif %}
+    
+            {% if request.LANGUAGE_CODE|lower == 'en' or LANGUAGE_CODE|lower == 'en-us' %}
+                <option value="en" selected>English</option>
+            {% else %}
+                <option value="en">English</option>
+            {% endif %}
+    
+            {% if request.LANGUAGE_CODE|lower == 'tr' or LANGUAGE_CODE|lower == 'tr-tr' %}
+                <option value="tr" selected>Türkçe</option>
+            {% else %}
+                <option value="tr">Türkçe</option>
+            {% endif %}
+        </select>
+        </form>
+      </div>
+    </div>
+    </div>
+  </footer>
+
+<!-- Кнопка вызова нейросети -->
+  <button id="neuroChatBtn" class="neuro-fab" title="{% translate 'Спросить нейросеть' %}">💻</button>
+
+  <!-- Окно чата с нейросетью -->
+  <div id="neuroChat" class="neuro-chat-window" style="display: none;">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <strong>💻 {% translate "Нейросеть" %}</strong>
+      <button id="closeNeuroChat" class="close-chat-btn">✖</button>
+    </div>
+
+    <div id="chatMessages" class="chat-messages mb-3"></div>
+
+    <div class="input-group mb-2">
+      <input type="text" id="neuroInput" class="form-control chat-input" placeholder="{% translate 'Введите запрос...' %}">
+      <button id="sendNeuroBtn" class="btn btn-send">{% translate "Отправить" %}</button>
+    </div>
+
+    <div class="text-end">
+      <button id="clearChatBtn" class="btn btn-outline-danger btn-sm">
+        🧹 {% translate "Очистить чат" %}
+      </button>
+    </div>
+  </div>
+
+  <!-- JS -->
+  <script src="{% static 'js/bootstrap_bundle.js' %}"></script>
+  <script src="{% static 'js/chat_ai.js' %}"></script>
+  <script src="{% static 'js/theme.js' %}"></script>
+</body>
+
+</html>

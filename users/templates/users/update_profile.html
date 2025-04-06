@@ -1,0 +1,106 @@
+{% extends 'main/index.html' %}
+{% load static i18n %}
+
+{% block content %}
+<script src="{% static 'js/fancybox.js' %}"></script>
+<link rel="stylesheet" href="{% static 'css/fancybox.css' %}"/>
+
+<div class="container mt-5">
+  <div class="text-center mb-4">
+      <h2><span class="text-bg">{% translate "Изменение профиля" %}</span></h2>
+  </div>
+
+  <form method="post" enctype="multipart/form-data" class="needs-validation">
+    <div class="card shadow-sm border-0 rounded-3 overflow-hidden">
+      <div class="card-header bg-primary text-white rounded-top text-center">
+        <h5 class="mb-0">{% translate "Данные профиля" %}</h5>
+      </div>
+      <div class="card-body p-4">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        <!-- Логин -->
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label class="form-label fw-bold">{% translate "Логин" %}:</label>
+            <div class="form-control-plaintext theme-label px-2">{{ user.username }}</div>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label fw-bold">{% translate "Почта" %}:</label>
+            <div class="form-control-plaintext theme-label px-2">{{ user.email }}</div>
+          </div>
+        </div>
+
+        <!-- Имя / Фамилия -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            {{ form.first_name.label_tag }}
+            {{ form.first_name }}
+            {% if form.first_name.errors %}
+              <div class="text-danger">{{ form.first_name.errors }}</div>
+            {% endif %}
+          </div>
+          <div class="col-md-6 mb-3">
+            {{ form.last_name.label_tag }}
+            {{ form.last_name }}
+            {% if form.last_name.errors %}
+              <div class="text-danger">{{ form.last_name.errors }}</div>
+            {% endif %}
+          </div>
+        </div>
+
+        <!-- Город -->
+        <div class="mb-3">
+          {{ form.city.label_tag }}
+          {{ form.city }}
+          {% if form.city.errors %}
+            <div class="text-danger">{{ form.city.errors }}</div>
+          {% endif %}
+        </div>
+
+        <!-- Телефон + Telegram -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            {{ form.phone_number.label_tag }}
+            {{ form.phone_number }}
+            {% if form.phone_number.errors %}
+              <div class="text-danger">{{ form.phone_number.errors }}</div>
+            {% endif %}
+          </div>
+          <div class="col-md-6 mb-3 d-flex align-items-center">
+            <img src="{% static 'img/telegram.png' %}" alt="Telegram" width="24" height="24" class="me-2">
+            <div class="form-check m-0">
+              {{ form.telegram_enabled }}
+              <label class="form-check-label">{% translate "Включить уведомления в Telegram" %}</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Аватар -->
+        <div class="mb-3">
+          <label class="form-label fw-bold">{% translate "Фото профиля" %}:</label>
+          <div class="d-flex align-items-center gap-3">
+            {% if user.avatar %}
+              <a href="{{ user.avatar.url }}" data-fancybox>
+                <img src="{{ user.avatar.url }}" class="rounded-circle" width="80" height="80" alt="avatar">
+              </a>
+            {% endif %}
+            <div class="flex-grow-1">
+              {{ form.avatar }}
+              {% if form.avatar.errors %}
+                <div class="text-danger">{{ form.avatar.errors }}</div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <!-- Кнопки -->
+        <div class="d-flex justify-content-end mt-4 gap-3">
+          <a href="{% url 'users:profile' user.pk %}" class="btn btn-outline-secondary">{% translate "Отмена" %}</a>
+          <button type="submit" class="btn btn-success">{% translate "Сохранить" %}</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock %}
