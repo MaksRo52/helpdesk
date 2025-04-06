@@ -37,7 +37,7 @@ services:
     volumes:
       - ./nginx_conf/app.conf:/etc/nginx/conf.d/default.conf
 #      - ../cert:/etc/nginx/ssl
-      - ../logs:/var/log/nginx
+#      - ../logs:/var/log/nginx
       - static:/var/www/html/helpdesk/static/
       - media:/var/www/html/helpdesk/media/
     depends_on:
